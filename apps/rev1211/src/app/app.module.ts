@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { CoreModule} from '@rev1211/rev1211-core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from '@rev1211/common-ui';
 import { AuthService } from '@rev1211/data-access';
 import { AuthGuardService } from '@rev1211/data-access';
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -18,12 +17,15 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatButtonModule} from "@angular/material/button";
 import { MatCardModule } from '@angular/material/card';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
     // angular
     BrowserAnimationsModule,
     BrowserModule,
+
+    FontAwesomeModule,
 
     // core
     CoreModule,
@@ -42,12 +44,13 @@ import { MatCardModule } from '@angular/material/card';
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+
   ],
   providers: [
     AuthService,
     AuthGuardService
   ],
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

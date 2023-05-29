@@ -64,14 +64,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('@rev1211/common-ui').then(
-        (m) => m.LoginModule
+        (m) => m.CommonUiModule
       ),
   },
   {
     path: 'logout',
     loadChildren: () =>
       import('@rev1211/common-ui').then(
-        (m) => m.LoginModule
+        (m) => m.CommonUiModule
       ),
   },
 ];
