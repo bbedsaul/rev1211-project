@@ -1,0 +1,19 @@
+query Users {
+    users {
+    username
+    email
+    }
+}
+
+mutation Login($input: UsersPermissionsLoginInput!) {
+    login(input: $input) {
+        jwt
+        user {
+        id
+        email
+        confirmed
+        blocked
+        }
+    }
+}
+

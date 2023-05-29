@@ -1,17 +1,53 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule } from '@angular/core';
+import { CoreModule} from '@rev1211/rev1211-core';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { FooterComponent } from '@rev1211/common-ui';
+import { AuthService } from '@rev1211/data-access';
+import { AuthGuardService } from '@rev1211/data-access';
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatListModule} from "@angular/material/list";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSelectModule} from "@angular/material/select";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatButtonModule} from "@angular/material/button";
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
-  declarations: [AppComponent, NxWelcomeComponent],
   imports: [
+    // angular
+    BrowserAnimationsModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+
+    // core
+    CoreModule,
+
+    // app
+    AppRoutingModule,
+
+    // material
+    MatCardModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatMenuModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    MatSnackBarModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService
+  ],
+  declarations: [AppComponent, FooterComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
