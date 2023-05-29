@@ -29,9 +29,9 @@ export class AppComponent implements OnInit {
   version = env.versions.app;
   year = new Date().getFullYear();
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  logoOne = require('../assets/whirlwindz.png').default;
+//  logoOne = require('../assets/whirlwindz.png').default;
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-  logoTwo = require('../assets/whirlwindz.png').default;
+//  logoTwo = require('../assets/whirlwindz.png').default;
   languages = ['en', 'fr', 'es'];
   navigation = [
     {

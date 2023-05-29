@@ -1,0 +1,9 @@
+$whirlwindz-light-primary: mat-palette($mat-grey, 200, 500, 300);
+$whirlwindz-light-accent: mat-palette($mat-brown, 200);
+$whirlwindz-light-warn: mat-palette($mat-deep-orange, 200);
+
+$whirlwindz-light-theme: mat-light-theme(
+  $whirlwindz-light-primary,
+  $whirlwindz-light-accent,
+  $whirlwindz-light-warn
+);
