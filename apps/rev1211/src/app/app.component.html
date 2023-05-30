@@ -27,7 +27,7 @@
       >
         <mat-toolbar color="primary">
           <button mat-icon-button class="d-md-none" (click)="sidenav.open()">
-            <fa-icon icon="bars"></fa-icon>
+            <fa-icon [icon]="bars"></fa-icon>
           </button>
 
           <span routerLink="" class="branding spacer center d-inline d-sm-none">
@@ -91,11 +91,11 @@
             mat-icon-button
             [matMenuTriggerFor]="toolbarUserMenu"
           >
-            <fa-icon icon="user-circle"></fa-icon>
+            <fa-icon [icon]="usercircle"></fa-icon>
           </button>
           <mat-menu #toolbarUserMenu="matMenu">
             <button mat-menu-item (click)="onLogoutClick()">
-              <mat-icon><fa-icon icon="power-off"></fa-icon></mat-icon>
+              <mat-icon><fa-icon [icon]="poweroff"></fa-icon></mat-icon>
               <span>{{ 'whirlwindz.menu.logout' }}</span>
             </button>
           </mat-menu>
@@ -105,7 +105,7 @@
             routerLink="settings"
             class="d-none d-sm-inline"
           >
-            <fa-icon icon="cog"></fa-icon>
+            <fa-icon [icon]="cog"></fa-icon>
           </button>
         </mat-toolbar>
       </div>

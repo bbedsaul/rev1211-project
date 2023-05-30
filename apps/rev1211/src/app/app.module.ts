@@ -16,8 +16,42 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatButtonModule} from "@angular/material/button";
 import { MatCardModule } from '@angular/material/card';
+import { DataAccessModule} from "@rev1211/data-access";
+import { CommonUiModule } from "@rev1211/common-ui";
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+      FontAwesomeModule,
+      FaIconLibrary
+    } from '@fortawesome/angular-fontawesome';
+
+
+import {
+  faCog,
+  faBars,
+  faRocket,
+  faPowerOff,
+  faUserCircle,
+  faPlayCircle,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faGithub,
+  faMediumM,
+  faTwitter,
+  faInstagram,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
+import {library} from "@fortawesome/fontawesome-svg-core";
+
+library.add(faPlayCircle, faCog,
+  faBars,
+  faRocket,
+  faPowerOff,
+  faUserCircle,
+  faGithub,
+  faMediumM,
+  faTwitter,
+  faInstagram,
+  faYoutube,);
 
 @NgModule({
   imports: [
@@ -45,10 +79,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MatSnackBarModule,
     MatButtonModule,
 
+    CommonUiModule,
+    DataAccessModule
+
   ],
   providers: [
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    DataAccessModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

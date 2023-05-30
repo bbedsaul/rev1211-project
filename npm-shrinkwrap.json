@@ -28,6 +28,7 @@
         "@nx/angular": "16.2.2",
         "@nx/storybook": "^16.2.2",
         "apollo-angular": "^5.0.0",
+        "apollo-angular-link-http": "^1.11.0",
         "bootstrap": "^5.2.3",
         "browser-detect": "^0.2.28",
         "graphql": "^16.6.0",
@@ -8077,6 +8078,36 @@
         "rxjs": "^6.0.0 || ^7.0.0"
       }
     },
+    "node_modules/apollo-angular-link-http": {
+      "version": "1.11.0",
+      "resolved": "https://registry.npmjs.org/apollo-angular-link-http/-/apollo-angular-link-http-1.11.0.tgz",
+      "integrity": "sha512-/mFytwvHhmWOX3emi8ljpuas8HpwSVOfbKniOeDFSE44g9HsPKkq2bGTucUTUo0Un3cCBEVKei2jTIDVsZPqFA==",
+      "dependencies": {
+        "apollo-angular-link-http-common": "~1.10.0",
+        "extract-files": "6.0.0",
+        "tslib": "^2.0.0"
+      },
+      "peerDependencies": {
+        "@angular/common": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
+        "@angular/core": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
+        "apollo-link": "^1.0.0",
+        "graphql": ">=0.11.0 <0.14.0 || ^14.0.0 || ^15.0.0"
+      }
+    },
+    "node_modules/apollo-angular-link-http-common": {
+      "version": "1.10.0",
+      "resolved": "https://registry.npmjs.org/apollo-angular-link-http-common/-/apollo-angular-link-http-common-1.10.0.tgz",
+      "integrity": "sha512-Oue8b/naWZvG/oQ+3ZAqaBVreBIwqy16yOk5CpoE7+Gjhett9KGVu/OZcpH89/ifwXyWzHpKnCUnB1fxgbnR7Q==",
+      "dependencies": {
+        "tslib": "^2.0.0"
+      },
+      "peerDependencies": {
+        "@angular/common": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
+        "@angular/core": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0",
+        "apollo-link": "^1.0.0",
+        "graphql": ">=0.11.0 <0.14.0 || ^14.0.0 || ^15.0.0"
+      }
+    },
     "node_modules/aproba": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/aproba/-/aproba-2.0.0.tgz",
@@ -11594,6 +11625,17 @@
       },
       "engines": {
         "node": ">=0.6.0"
+      }
+    },
+    "node_modules/extract-files": {
+      "version": "6.0.0",
+      "resolved": "https://registry.npmjs.org/extract-files/-/extract-files-6.0.0.tgz",
+      "integrity": "sha512-v9UVTPkERZR1NjEOIPvmbzLFdh8YZFEGjRdSJraop6HJe9PQ8HU9iv6eRMuF06CXXXO/R5OBmnWMixZHuZ8CsA==",
+      "engines": {
+        "node": ">=8.10"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/jaydenseric"
       }
     },
     "node_modules/extract-zip": {

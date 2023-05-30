@@ -5,6 +5,8 @@ import { LoginRoutingModule } from './login/login-routing.module';
 import { SignupComponent } from './login/signup/signup.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
@@ -37,6 +39,7 @@ import {
   faInstagram,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
+import {library} from "@fortawesome/fontawesome-svg-core";
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, FooterComponent],
@@ -48,6 +51,8 @@ import {
     FontAwesomeModule,
 
     // material
+    MatInputModule,
+    MatFormFieldModule,
     MatCardModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -65,4 +70,17 @@ import {
     FontAwesomeModule,
   ]
 })
-export class CommonUiModule { }
+export class CommonUiModule {
+  constructor() {
+    library.add(faPlayCircle, faCog,
+      faBars,
+      faRocket,
+      faPowerOff,
+      faUserCircle,
+      faGithub,
+      faMediumM,
+      faTwitter,
+      faInstagram,
+      faYoutube,);
+  }
+}

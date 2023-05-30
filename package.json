@@ -24,6 +24,7 @@
     "@nx/angular": "16.2.2",
     "@nx/storybook": "^16.2.2",
     "apollo-angular": "^5.0.0",
+    "apollo-angular-link-http": "^1.11.0",
     "bootstrap": "^5.2.3",
     "browser-detect": "^0.2.28",
     "graphql": "^16.6.0",

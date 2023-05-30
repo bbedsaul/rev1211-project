@@ -16,6 +16,14 @@ import {
 
 import { Router } from '@angular/router';
 import { Apollo} from "apollo-angular";
+import {
+  faCog,
+  faBars,
+  faRocket,
+  faPowerOff,
+  faUserCircle,
+  faPlayCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'rev1211-root',
@@ -24,6 +32,11 @@ import { Apollo} from "apollo-angular";
   animations: [routeAnimations],
 })
 export class AppComponent implements OnInit {
+  bars = faBars;
+  usercircle = faUserCircle;
+  poweroff = faPowerOff;
+  cog = faCog;
+
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
@@ -60,10 +73,11 @@ export class AppComponent implements OnInit {
     private apollo: Apollo,
   ) {}
 
+  /*
   private static isIEorEdgeOrSafari() {
-    // @ts-ignore
     return (['ie', 'edge', 'safari'].includes(browser().name) );
   }
+  */
 
   ngOnInit(): void {
 
