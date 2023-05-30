@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { UsersPermissionsLoginInput, LOGIN_MUTATION, AUTH_TOKEN } from "@rev1211/data-access";
 
 import {
   ROUTE_ANIMATIONS_ELEMENTS,
@@ -11,6 +12,8 @@ import {
 import { LoginForm } from './login-form.model';
 import { Router } from '@angular/router';
 import { AuthService } from '@rev1211/data-access';
+import {Apollo} from "apollo-angular";
+
 
 @Component({
   selector: 'rev1211-login',
@@ -34,7 +37,7 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     private notificationService: NotificationService,
-    private localStorageService: LocalStorageService,
+    private apollo: Apollo,
   ) {}
 
   forgotPassword() {
@@ -108,9 +111,12 @@ export class LoginComponent {
       sprint: "60fdc029b58375b2db26b6fd",
       sprinter: "60fdc69fb58375b2db26b721"
     }
+    */
 
     let input: UsersPermissionsLoginInput = {
+      // @ts-ignore
       identifier: this.form.controls.username.value,
+      // @ts-ignore
       password: this.form.controls.password.value,
       provider: 'local'
     };
@@ -128,8 +134,8 @@ export class LoginComponent {
       this.authService.logout();
       this.notificationService.info('Error Logging in, Please try again');
     });
-    */
-//    console.log("login success for username : " + input.identifier);
+
+    console.log("login success for username : " + input.identifier);
   }
 
   reset() {

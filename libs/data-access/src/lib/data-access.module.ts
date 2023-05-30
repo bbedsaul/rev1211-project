@@ -29,7 +29,7 @@ export {
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'http://localhost:1337/graphql'
+            uri: 'http://192.168.0.26:1337/graphql'
           })
         }
       },

@@ -2,558 +2,670 @@ import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  /** A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  Date: any;
-  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar. */
-  DateTime: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
-  JSON: any;
-  /** The `Long` scalar type represents 52-bit integers */
-  Long: any;
-  /** A time string with format: HH:mm:ss.SSS */
-  Time: any;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
+  ID: { input: string | number; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
+  JSON: { input: any; output: any; }
+  Long: { input: any; output: any; }
+  Upload: { input: any; output: any; }
 };
 
-
-
-export type AdminUser = {
-  __typename?: 'AdminUser';
-  id: Scalars['ID'];
-  username?: Maybe<Scalars['String']>;
-  firstname: Scalars['String'];
-  lastname: Scalars['String'];
+export type BooleanFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  contains?: InputMaybe<Scalars['Boolean']['input']>;
+  containsi?: InputMaybe<Scalars['Boolean']['input']>;
+  endsWith?: InputMaybe<Scalars['Boolean']['input']>;
+  eq?: InputMaybe<Scalars['Boolean']['input']>;
+  eqi?: InputMaybe<Scalars['Boolean']['input']>;
+  gt?: InputMaybe<Scalars['Boolean']['input']>;
+  gte?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  lt?: InputMaybe<Scalars['Boolean']['input']>;
+  lte?: InputMaybe<Scalars['Boolean']['input']>;
+  ne?: InputMaybe<Scalars['Boolean']['input']>;
+  not?: InputMaybe<BooleanFilterInput>;
+  notContains?: InputMaybe<Scalars['Boolean']['input']>;
+  notContainsi?: InputMaybe<Scalars['Boolean']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type Categories = {
-  __typename?: 'Categories';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name?: Maybe<Scalars['String']>;
-  color?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
+export type CustomLinksCustomLink = {
+  __typename?: 'CustomLinksCustomLink';
+  contentId?: Maybe<Scalars['Long']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  kind?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  uri?: Maybe<Scalars['String']['output']>;
 };
 
-export type CategoriesAggregator = {
-  __typename?: 'CategoriesAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
+export type CustomLinksCustomLinkEntity = {
+  __typename?: 'CustomLinksCustomLinkEntity';
+  attributes?: Maybe<CustomLinksCustomLink>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type CategoriesConnection = {
-  __typename?: 'CategoriesConnection';
-  values?: Maybe<Array<Maybe<Categories>>>;
-  groupBy?: Maybe<CategoriesGroupBy>;
-  aggregate?: Maybe<CategoriesAggregator>;
+export type CustomLinksCustomLinkEntityResponse = {
+  __typename?: 'CustomLinksCustomLinkEntityResponse';
+  data?: Maybe<CustomLinksCustomLinkEntity>;
 };
 
-export type CategoriesConnectionColor = {
-  __typename?: 'CategoriesConnectionColor';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksCustomLinkEntityResponseCollection = {
+  __typename?: 'CustomLinksCustomLinkEntityResponseCollection';
+  data: Array<CustomLinksCustomLinkEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type CategoriesConnectionCreatedAt = {
-  __typename?: 'CategoriesConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksCustomLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CustomLinksCustomLinkFiltersInput>>>;
+  contentId?: InputMaybe<LongFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  kind?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<CustomLinksCustomLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CustomLinksCustomLinkFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  uri?: InputMaybe<StringFilterInput>;
 };
 
-export type CategoriesConnectionId = {
-  __typename?: 'CategoriesConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksCustomLinkInput = {
+  contentId?: InputMaybe<Scalars['Long']['input']>;
+  kind?: InputMaybe<Scalars['String']['input']>;
+  uri?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type CategoriesConnectionName = {
-  __typename?: 'CategoriesConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksTempuri = {
+  __typename?: 'CustomLinksTempuri';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  uri?: Maybe<Scalars['String']['output']>;
 };
 
-export type CategoriesConnectionPublished_At = {
-  __typename?: 'CategoriesConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksTempuriEntity = {
+  __typename?: 'CustomLinksTempuriEntity';
+  attributes?: Maybe<CustomLinksTempuri>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type CategoriesConnectionUpdatedAt = {
-  __typename?: 'CategoriesConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksTempuriEntityResponse = {
+  __typename?: 'CustomLinksTempuriEntityResponse';
+  data?: Maybe<CustomLinksTempuriEntity>;
 };
 
-export type CategoriesConnection_Id = {
-  __typename?: 'CategoriesConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<CategoriesConnection>;
+export type CustomLinksTempuriEntityResponseCollection = {
+  __typename?: 'CustomLinksTempuriEntityResponseCollection';
+  data: Array<CustomLinksTempuriEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type CategoriesGroupBy = {
-  __typename?: 'CategoriesGroupBy';
-  id?: Maybe<Array<Maybe<CategoriesConnectionId>>>;
-  _id?: Maybe<Array<Maybe<CategoriesConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<CategoriesConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<CategoriesConnectionUpdatedAt>>>;
-  name?: Maybe<Array<Maybe<CategoriesConnectionName>>>;
-  color?: Maybe<Array<Maybe<CategoriesConnectionColor>>>;
-  published_at?: Maybe<Array<Maybe<CategoriesConnectionPublished_At>>>;
+export type CustomLinksTempuriFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CustomLinksTempuriFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CustomLinksTempuriFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CustomLinksTempuriFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  uri?: InputMaybe<StringFilterInput>;
 };
 
-export type CategoryInput = {
-  name?: Maybe<Scalars['String']>;
-  color?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+export type CustomLinksTempuriInput = {
+  uri?: InputMaybe<Scalars['String']['input']>;
 };
 
-
-
-export type DefaultStickies = {
-  __typename?: 'DefaultStickies';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  category?: Maybe<Categories>;
-  method?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
+export type DateTimeFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  contains?: InputMaybe<Scalars['DateTime']['input']>;
+  containsi?: InputMaybe<Scalars['DateTime']['input']>;
+  endsWith?: InputMaybe<Scalars['DateTime']['input']>;
+  eq?: InputMaybe<Scalars['DateTime']['input']>;
+  eqi?: InputMaybe<Scalars['DateTime']['input']>;
+  gt?: InputMaybe<Scalars['DateTime']['input']>;
+  gte?: InputMaybe<Scalars['DateTime']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  lt?: InputMaybe<Scalars['DateTime']['input']>;
+  lte?: InputMaybe<Scalars['DateTime']['input']>;
+  ne?: InputMaybe<Scalars['DateTime']['input']>;
+  not?: InputMaybe<DateTimeFilterInput>;
+  notContains?: InputMaybe<Scalars['DateTime']['input']>;
+  notContainsi?: InputMaybe<Scalars['DateTime']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  startsWith?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type DefaultStickiesAggregator = {
-  __typename?: 'DefaultStickiesAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-  sum?: Maybe<DefaultStickiesAggregatorSum>;
-  avg?: Maybe<DefaultStickiesAggregatorAvg>;
-  min?: Maybe<DefaultStickiesAggregatorMin>;
-  max?: Maybe<DefaultStickiesAggregatorMax>;
-};
-
-export type DefaultStickiesAggregatorAvg = {
-  __typename?: 'DefaultStickiesAggregatorAvg';
-  points?: Maybe<Scalars['Float']>;
-};
-
-export type DefaultStickiesAggregatorMax = {
-  __typename?: 'DefaultStickiesAggregatorMax';
-  points?: Maybe<Scalars['Float']>;
-};
-
-export type DefaultStickiesAggregatorMin = {
-  __typename?: 'DefaultStickiesAggregatorMin';
-  points?: Maybe<Scalars['Float']>;
-};
-
-export type DefaultStickiesAggregatorSum = {
-  __typename?: 'DefaultStickiesAggregatorSum';
-  points?: Maybe<Scalars['Float']>;
-};
-
-export type DefaultStickiesConnection = {
-  __typename?: 'DefaultStickiesConnection';
-  values?: Maybe<Array<Maybe<DefaultStickies>>>;
-  groupBy?: Maybe<DefaultStickiesGroupBy>;
-  aggregate?: Maybe<DefaultStickiesAggregator>;
-};
-
-export type DefaultStickiesConnectionCategory = {
-  __typename?: 'DefaultStickiesConnectionCategory';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionCreatedAt = {
-  __typename?: 'DefaultStickiesConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionDescription = {
-  __typename?: 'DefaultStickiesConnectionDescription';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionIcon = {
-  __typename?: 'DefaultStickiesConnectionIcon';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionId = {
-  __typename?: 'DefaultStickiesConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionMethod = {
-  __typename?: 'DefaultStickiesConnectionMethod';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionName = {
-  __typename?: 'DefaultStickiesConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionPoints = {
-  __typename?: 'DefaultStickiesConnectionPoints';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionPublished_At = {
-  __typename?: 'DefaultStickiesConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnectionUpdatedAt = {
-  __typename?: 'DefaultStickiesConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesConnection_Id = {
-  __typename?: 'DefaultStickiesConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<DefaultStickiesConnection>;
-};
-
-export type DefaultStickiesGroupBy = {
-  __typename?: 'DefaultStickiesGroupBy';
-  id?: Maybe<Array<Maybe<DefaultStickiesConnectionId>>>;
-  _id?: Maybe<Array<Maybe<DefaultStickiesConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<DefaultStickiesConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<DefaultStickiesConnectionUpdatedAt>>>;
-  name?: Maybe<Array<Maybe<DefaultStickiesConnectionName>>>;
-  description?: Maybe<Array<Maybe<DefaultStickiesConnectionDescription>>>;
-  points?: Maybe<Array<Maybe<DefaultStickiesConnectionPoints>>>;
-  category?: Maybe<Array<Maybe<DefaultStickiesConnectionCategory>>>;
-  method?: Maybe<Array<Maybe<DefaultStickiesConnectionMethod>>>;
-  icon?: Maybe<Array<Maybe<DefaultStickiesConnectionIcon>>>;
-  published_at?: Maybe<Array<Maybe<DefaultStickiesConnectionPublished_At>>>;
-};
-
-export type DefaultStickyInput = {
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  category?: Maybe<Scalars['ID']>;
-  method?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export enum Enum_Sprintactivitylog_Activity {
-  StartSprint = 'startSprint',
-  EndSprint = 'endSprint',
-  StartMeeting = 'startMeeting'
+export enum Enum_Module_Type {
+  Second = 'second',
+  Starter = 'starter'
 }
 
-export enum Enum_Stickies_Status {
-  Todo = 'todo',
-  Doing = 'doing',
-  Completed = 'completed'
+export enum Enum_Sprint_Type {
+  Second = 'second',
+  Starter = 'starter'
 }
 
-export enum Enum_Stickyactivitylog_Activity {
-  TodoToDoing = 'todoToDoing',
-  TodoToCompleted = 'todoToCompleted',
-  DoingToTodo = 'doingToTodo',
-  DoingToCompleted = 'doingToCompleted',
-  CompletedToTodo = 'completedToTodo',
-  CompletedToDoing = 'completedToDoing',
-  TodoToTodo = 'todoToTodo',
-  DoingToDoing = 'doingToDoing',
-  CompletedToCompleted = 'completedToCompleted',
-  AddedTodo = 'addedTodo'
-}
+export type EzformsRecipient = {
+  __typename?: 'EzformsRecipient';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  number?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type EzformsRecipientEntity = {
+  __typename?: 'EzformsRecipientEntity';
+  attributes?: Maybe<EzformsRecipient>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type EzformsRecipientEntityResponse = {
+  __typename?: 'EzformsRecipientEntityResponse';
+  data?: Maybe<EzformsRecipientEntity>;
+};
+
+export type EzformsRecipientEntityResponseCollection = {
+  __typename?: 'EzformsRecipientEntityResponseCollection';
+  data: Array<EzformsRecipientEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type EzformsRecipientFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<EzformsRecipientFiltersInput>;
+  number?: InputMaybe<StringFilterInput>;
+  or?: InputMaybe<Array<InputMaybe<EzformsRecipientFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type EzformsRecipientInput = {
+  email?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  number?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type EzformsSubmission = {
+  __typename?: 'EzformsSubmission';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  data?: Maybe<Scalars['JSON']['output']>;
+  formName?: Maybe<Scalars['String']['output']>;
+  score?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type EzformsSubmissionEntity = {
+  __typename?: 'EzformsSubmissionEntity';
+  attributes?: Maybe<EzformsSubmission>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type EzformsSubmissionEntityResponse = {
+  __typename?: 'EzformsSubmissionEntityResponse';
+  data?: Maybe<EzformsSubmissionEntity>;
+};
+
+export type EzformsSubmissionEntityResponseCollection = {
+  __typename?: 'EzformsSubmissionEntityResponseCollection';
+  data: Array<EzformsSubmissionEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type EzformsSubmissionFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  data?: InputMaybe<JsonFilterInput>;
+  formName?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<EzformsSubmissionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<EzformsSubmissionFiltersInput>>>;
+  score?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type EzformsSubmissionInput = {
+  data?: InputMaybe<Scalars['JSON']['input']>;
+  formName?: InputMaybe<Scalars['String']['input']>;
+  score?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type FileInfoInput = {
-  name?: Maybe<Scalars['String']>;
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
+  alternativeText?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type FileInput = {
-  name: Scalars['String'];
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  formats?: Maybe<Scalars['JSON']>;
-  hash: Scalars['String'];
-  ext?: Maybe<Scalars['String']>;
-  mime: Scalars['String'];
-  size: Scalars['Float'];
-  url: Scalars['String'];
-  previewUrl?: Maybe<Scalars['String']>;
-  provider: Scalars['String'];
-  provider_metadata?: Maybe<Scalars['JSON']>;
-  related?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+export type FloatFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  contains?: InputMaybe<Scalars['Float']['input']>;
+  containsi?: InputMaybe<Scalars['Float']['input']>;
+  endsWith?: InputMaybe<Scalars['Float']['input']>;
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  eqi?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  ne?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<FloatFilterInput>;
+  notContains?: InputMaybe<Scalars['Float']['input']>;
+  notContainsi?: InputMaybe<Scalars['Float']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type InputId = {
-  id: Scalars['ID'];
+export type GenericMorph = CustomLinksCustomLink | CustomLinksTempuri | EzformsRecipient | EzformsSubmission | I18NLocale | Module | Sprint | SprintDay | Sticky | UploadFile | UploadFolder | UserProfile | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+
+export type I18NLocale = {
+  __typename?: 'I18NLocale';
+  code?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type I18NLocaleEntity = {
+  __typename?: 'I18NLocaleEntity';
+  attributes?: Maybe<I18NLocale>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type I18NLocaleEntityResponse = {
+  __typename?: 'I18NLocaleEntityResponse';
+  data?: Maybe<I18NLocaleEntity>;
+};
+
+export type I18NLocaleEntityResponseCollection = {
+  __typename?: 'I18NLocaleEntityResponseCollection';
+  data: Array<I18NLocaleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type I18NLocaleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  code?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<I18NLocaleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<I18NLocaleFiltersInput>>>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type IdFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  contains?: InputMaybe<Scalars['ID']['input']>;
+  containsi?: InputMaybe<Scalars['ID']['input']>;
+  endsWith?: InputMaybe<Scalars['ID']['input']>;
+  eq?: InputMaybe<Scalars['ID']['input']>;
+  eqi?: InputMaybe<Scalars['ID']['input']>;
+  gt?: InputMaybe<Scalars['ID']['input']>;
+  gte?: InputMaybe<Scalars['ID']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  lt?: InputMaybe<Scalars['ID']['input']>;
+  lte?: InputMaybe<Scalars['ID']['input']>;
+  ne?: InputMaybe<Scalars['ID']['input']>;
+  not?: InputMaybe<IdFilterInput>;
+  notContains?: InputMaybe<Scalars['ID']['input']>;
+  notContainsi?: InputMaybe<Scalars['ID']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  startsWith?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type IntFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  contains?: InputMaybe<Scalars['Int']['input']>;
+  containsi?: InputMaybe<Scalars['Int']['input']>;
+  endsWith?: InputMaybe<Scalars['Int']['input']>;
+  eq?: InputMaybe<Scalars['Int']['input']>;
+  eqi?: InputMaybe<Scalars['Int']['input']>;
+  gt?: InputMaybe<Scalars['Int']['input']>;
+  gte?: InputMaybe<Scalars['Int']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  lt?: InputMaybe<Scalars['Int']['input']>;
+  lte?: InputMaybe<Scalars['Int']['input']>;
+  ne?: InputMaybe<Scalars['Int']['input']>;
+  not?: InputMaybe<IntFilterInput>;
+  notContains?: InputMaybe<Scalars['Int']['input']>;
+  notContainsi?: InputMaybe<Scalars['Int']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type JsonFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  contains?: InputMaybe<Scalars['JSON']['input']>;
+  containsi?: InputMaybe<Scalars['JSON']['input']>;
+  endsWith?: InputMaybe<Scalars['JSON']['input']>;
+  eq?: InputMaybe<Scalars['JSON']['input']>;
+  eqi?: InputMaybe<Scalars['JSON']['input']>;
+  gt?: InputMaybe<Scalars['JSON']['input']>;
+  gte?: InputMaybe<Scalars['JSON']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  lt?: InputMaybe<Scalars['JSON']['input']>;
+  lte?: InputMaybe<Scalars['JSON']['input']>;
+  ne?: InputMaybe<Scalars['JSON']['input']>;
+  not?: InputMaybe<JsonFilterInput>;
+  notContains?: InputMaybe<Scalars['JSON']['input']>;
+  notContainsi?: InputMaybe<Scalars['JSON']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['JSON']['input']>>>;
+  startsWith?: InputMaybe<Scalars['JSON']['input']>;
+};
+
+export type LongFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  contains?: InputMaybe<Scalars['Long']['input']>;
+  containsi?: InputMaybe<Scalars['Long']['input']>;
+  endsWith?: InputMaybe<Scalars['Long']['input']>;
+  eq?: InputMaybe<Scalars['Long']['input']>;
+  eqi?: InputMaybe<Scalars['Long']['input']>;
+  gt?: InputMaybe<Scalars['Long']['input']>;
+  gte?: InputMaybe<Scalars['Long']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  lt?: InputMaybe<Scalars['Long']['input']>;
+  lte?: InputMaybe<Scalars['Long']['input']>;
+  ne?: InputMaybe<Scalars['Long']['input']>;
+  not?: InputMaybe<LongFilterInput>;
+  notContains?: InputMaybe<Scalars['Long']['input']>;
+  notContainsi?: InputMaybe<Scalars['Long']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['Long']['input']>>>;
+  startsWith?: InputMaybe<Scalars['Long']['input']>;
+};
+
+export type Module = {
+  __typename?: 'Module';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sprints?: Maybe<SprintRelationResponseCollection>;
+  type: Enum_Module_Type;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
-export type Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | UserPermissionsPasswordPayload | Categories | CategoriesConnection | CategoriesAggregator | CategoriesGroupBy | CategoriesConnectionId | CategoriesConnection_Id | CategoriesConnectionCreatedAt | CategoriesConnectionUpdatedAt | CategoriesConnectionName | CategoriesConnectionColor | CategoriesConnectionPublished_At | CreateCategoryPayload | UpdateCategoryPayload | DeleteCategoryPayload | DefaultStickies | DefaultStickiesConnection | DefaultStickiesAggregator | DefaultStickiesAggregatorSum | DefaultStickiesAggregatorAvg | DefaultStickiesAggregatorMin | DefaultStickiesAggregatorMax | DefaultStickiesGroupBy | DefaultStickiesConnectionId | DefaultStickiesConnection_Id | DefaultStickiesConnectionCreatedAt | DefaultStickiesConnectionUpdatedAt | DefaultStickiesConnectionName | DefaultStickiesConnectionDescription | DefaultStickiesConnectionPoints | DefaultStickiesConnectionCategory | DefaultStickiesConnectionMethod | DefaultStickiesConnectionIcon | DefaultStickiesConnectionPublished_At | CreateDefaultStickyPayload | UpdateDefaultStickyPayload | DeleteDefaultStickyPayload | NextStickies | NextStickiesConnection | NextStickiesAggregator | NextStickiesGroupBy | NextStickiesConnectionId | NextStickiesConnection_Id | NextStickiesConnectionCreatedAt | NextStickiesConnectionUpdatedAt | NextStickiesConnectionDefault_Sticky | NextStickiesConnectionSprint | NextStickiesConnectionSprinter | NextStickiesConnectionPublished_At | CreateNextStickyPayload | UpdateNextStickyPayload | DeleteNextStickyPayload | SprintActivityLog | SprintActivityLogConnection | SprintActivityLogAggregator | SprintActivityLogAggregatorSum | SprintActivityLogAggregatorAvg | SprintActivityLogAggregatorMin | SprintActivityLogAggregatorMax | SprintActivityLogGroupBy | SprintActivityLogConnectionId | SprintActivityLogConnection_Id | SprintActivityLogConnectionCreatedAt | SprintActivityLogConnectionUpdatedAt | SprintActivityLogConnectionSprint | SprintActivityLogConnectionActivity | SprintActivityLogConnectionDetail | SprintActivityLogConnectionSprintno | SprintActivityLogConnectionPublished_At | CreateSprintActivityLogPayload | UpdateSprintActivityLogPayload | DeleteSprintActivityLogPayload | Sprinters | SprintersConnection | SprintersAggregator | SprintersGroupBy | SprintersConnectionId | SprintersConnection_Id | SprintersConnectionCreatedAt | SprintersConnectionUpdatedAt | SprintersConnectionLastname | SprintersConnectionFirstname | SprintersConnectionDisplayname | SprintersConnectionUser | SprintersConnectionFacilitator | SprintersConnectionPublished_At | CreateSprinterPayload | UpdateSprinterPayload | DeleteSprinterPayload | Sprints | SprintsConnection | SprintsAggregator | SprintsGroupBy | SprintsConnectionId | SprintsConnection_Id | SprintsConnectionCreatedAt | SprintsConnectionUpdatedAt | SprintsConnectionName | SprintsConnectionDescription | SprintsConnectionPublished_At | CreateSprintPayload | UpdateSprintPayload | DeleteSprintPayload | Stickies | StickiesConnection | StickiesAggregator | StickiesAggregatorSum | StickiesAggregatorAvg | StickiesAggregatorMin | StickiesAggregatorMax | StickiesGroupBy | StickiesConnectionId | StickiesConnection_Id | StickiesConnectionCreatedAt | StickiesConnectionUpdatedAt | StickiesConnectionName | StickiesConnectionSprinter | StickiesConnectionDescription | StickiesConnectionPoints | StickiesConnectionStatus | StickiesConnectionOrder | StickiesConnectionIcon | StickiesConnectionMethod | StickiesConnectionCategory | StickiesConnectionSprint | StickiesConnectionPublished_At | CreateStickyPayload | UpdateStickyPayload | DeleteStickyPayload | StickyActivityLog | StickyActivityLogConnection | StickyActivityLogAggregator | StickyActivityLogGroupBy | StickyActivityLogConnectionId | StickyActivityLogConnection_Id | StickyActivityLogConnectionCreatedAt | StickyActivityLogConnectionUpdatedAt | StickyActivityLogConnectionSticky | StickyActivityLogConnectionActivity | StickyActivityLogConnectionDetails | StickyActivityLogConnectionPublished_At | CreateStickyActivityLogPayload | UpdateStickyActivityLogPayload | DeleteStickyActivityLogPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileAggregatorSum | UploadFileAggregatorAvg | UploadFileAggregatorMin | UploadFileAggregatorMax | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnection_Id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionAlternativeText | UploadFileConnectionCaption | UploadFileConnectionWidth | UploadFileConnectionHeight | UploadFileConnectionFormats | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionPreviewUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_Metadata | DeleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnection_Id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | CreateRolePayload | UpdateRolePayload | DeleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnection_Id | UsersPermissionsUserConnectionCreatedAt | UsersPermissionsUserConnectionUpdatedAt | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionSprinter | CreateUserPayload | UpdateUserPayload | DeleteUserPayload;
+export type ModuleSprintsArgs = {
+  filters?: InputMaybe<SprintFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ModuleEntity = {
+  __typename?: 'ModuleEntity';
+  attributes?: Maybe<Module>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type ModuleEntityResponse = {
+  __typename?: 'ModuleEntityResponse';
+  data?: Maybe<ModuleEntity>;
+};
+
+export type ModuleEntityResponseCollection = {
+  __typename?: 'ModuleEntityResponseCollection';
+  data: Array<ModuleEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type ModuleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ModuleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<ModuleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ModuleFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sprints?: InputMaybe<SprintFiltersInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type ModuleInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sprints?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  type?: InputMaybe<Enum_Module_Type>;
+};
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createCategory?: Maybe<CreateCategoryPayload>;
-  updateCategory?: Maybe<UpdateCategoryPayload>;
-  deleteCategory?: Maybe<DeleteCategoryPayload>;
-  createDefaultSticky?: Maybe<CreateDefaultStickyPayload>;
-  updateDefaultSticky?: Maybe<UpdateDefaultStickyPayload>;
-  deleteDefaultSticky?: Maybe<DeleteDefaultStickyPayload>;
-  createNextSticky?: Maybe<CreateNextStickyPayload>;
-  updateNextSticky?: Maybe<UpdateNextStickyPayload>;
-  deleteNextSticky?: Maybe<DeleteNextStickyPayload>;
-  createSprintActivityLog?: Maybe<CreateSprintActivityLogPayload>;
-  updateSprintActivityLog?: Maybe<UpdateSprintActivityLogPayload>;
-  deleteSprintActivityLog?: Maybe<DeleteSprintActivityLogPayload>;
-  createSprinter?: Maybe<CreateSprinterPayload>;
-  updateSprinter?: Maybe<UpdateSprinterPayload>;
-  deleteSprinter?: Maybe<DeleteSprinterPayload>;
-  createSprint?: Maybe<CreateSprintPayload>;
-  updateSprint?: Maybe<UpdateSprintPayload>;
-  deleteSprint?: Maybe<DeleteSprintPayload>;
-  createSticky?: Maybe<CreateStickyPayload>;
-  updateSticky?: Maybe<UpdateStickyPayload>;
-  deleteSticky?: Maybe<DeleteStickyPayload>;
-  createStickyActivityLog?: Maybe<CreateStickyActivityLogPayload>;
-  updateStickyActivityLog?: Maybe<UpdateStickyActivityLogPayload>;
-  deleteStickyActivityLog?: Maybe<DeleteStickyActivityLogPayload>;
-  /** Delete one file */
-  deleteFile?: Maybe<DeleteFilePayload>;
-  /** Create a new role */
-  createRole?: Maybe<CreateRolePayload>;
-  /** Update an existing role */
-  updateRole?: Maybe<UpdateRolePayload>;
-  /** Delete an existing role */
-  deleteRole?: Maybe<DeleteRolePayload>;
-  /** Create a new user */
-  createUser?: Maybe<CreateUserPayload>;
-  /** Update an existing user */
-  updateUser?: Maybe<UpdateUserPayload>;
-  /** Delete an existing user */
-  deleteUser?: Maybe<DeleteUserPayload>;
-  upload: UploadFile;
-  multipleUpload: Array<Maybe<UploadFile>>;
-  updateFileInfo: UploadFile;
-  login: UsersPermissionsLoginPayload;
-  register: UsersPermissionsLoginPayload;
-  forgotPassword?: Maybe<UserPermissionsPasswordPayload>;
-  resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createCustomLinksCustomLink?: Maybe<CustomLinksCustomLinkEntityResponse>;
+  createCustomLinksTempuri?: Maybe<CustomLinksTempuriEntityResponse>;
+  createEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  createEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  createModule?: Maybe<ModuleEntityResponse>;
+  createSprint?: Maybe<SprintEntityResponse>;
+  createSprintDay?: Maybe<SprintDayEntityResponse>;
+  createSticky?: Maybe<StickyEntityResponse>;
+  createUploadFile?: Maybe<UploadFileEntityResponse>;
+  createUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  createUserProfile?: Maybe<UserProfileEntityResponse>;
+  createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
+  createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteCustomLinksCustomLink?: Maybe<CustomLinksCustomLinkEntityResponse>;
+  deleteCustomLinksTempuri?: Maybe<CustomLinksTempuriEntityResponse>;
+  deleteEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  deleteEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  deleteModule?: Maybe<ModuleEntityResponse>;
+  deleteSprint?: Maybe<SprintEntityResponse>;
+  deleteSprintDay?: Maybe<SprintDayEntityResponse>;
+  deleteSticky?: Maybe<StickyEntityResponse>;
+  deleteUploadFile?: Maybe<UploadFileEntityResponse>;
+  deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  deleteUserProfile?: Maybe<UserProfileEntityResponse>;
+  deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
+  deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+  forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
+  login: UsersPermissionsLoginPayload;
+  multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
+  register: UsersPermissionsLoginPayload;
+  removeFile?: Maybe<UploadFileEntityResponse>;
+  resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCustomLinksCustomLink?: Maybe<CustomLinksCustomLinkEntityResponse>;
+  updateCustomLinksTempuri?: Maybe<CustomLinksTempuriEntityResponse>;
+  updateEzformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  updateEzformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  updateFileInfo: UploadFileEntityResponse;
+  updateModule?: Maybe<ModuleEntityResponse>;
+  updateSprint?: Maybe<SprintEntityResponse>;
+  updateSprintDay?: Maybe<SprintDayEntityResponse>;
+  updateSticky?: Maybe<StickyEntityResponse>;
+  updateUploadFile?: Maybe<UploadFileEntityResponse>;
+  updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  updateUserProfile?: Maybe<UserProfileEntityResponse>;
+  updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
+  updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  upload: UploadFileEntityResponse;
 };
 
 
-export type MutationCreateCategoryArgs = {
-  input?: Maybe<CreateCategoryInput>;
+export type MutationChangePasswordArgs = {
+  currentPassword: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  passwordConfirmation: Scalars['String']['input'];
 };
 
 
-export type MutationUpdateCategoryArgs = {
-  input?: Maybe<UpdateCategoryInput>;
+export type MutationCreateCustomLinksCustomLinkArgs = {
+  data: CustomLinksCustomLinkInput;
 };
 
 
-export type MutationDeleteCategoryArgs = {
-  input?: Maybe<DeleteCategoryInput>;
+export type MutationCreateCustomLinksTempuriArgs = {
+  data: CustomLinksTempuriInput;
 };
 
 
-export type MutationCreateDefaultStickyArgs = {
-  input?: Maybe<CreateDefaultStickyInput>;
+export type MutationCreateEzformsRecipientArgs = {
+  data: EzformsRecipientInput;
 };
 
 
-export type MutationUpdateDefaultStickyArgs = {
-  input?: Maybe<UpdateDefaultStickyInput>;
+export type MutationCreateEzformsSubmissionArgs = {
+  data: EzformsSubmissionInput;
 };
 
 
-export type MutationDeleteDefaultStickyArgs = {
-  input?: Maybe<DeleteDefaultStickyInput>;
-};
-
-
-export type MutationCreateNextStickyArgs = {
-  input?: Maybe<CreateNextStickyInput>;
-};
-
-
-export type MutationUpdateNextStickyArgs = {
-  input?: Maybe<UpdateNextStickyInput>;
-};
-
-
-export type MutationDeleteNextStickyArgs = {
-  input?: Maybe<DeleteNextStickyInput>;
-};
-
-
-export type MutationCreateSprintActivityLogArgs = {
-  input?: Maybe<CreateSprintActivityLogInput>;
-};
-
-
-export type MutationUpdateSprintActivityLogArgs = {
-  input?: Maybe<UpdateSprintActivityLogInput>;
-};
-
-
-export type MutationDeleteSprintActivityLogArgs = {
-  input?: Maybe<DeleteSprintActivityLogInput>;
-};
-
-
-export type MutationCreateSprinterArgs = {
-  input?: Maybe<CreateSprinterInput>;
-};
-
-
-export type MutationUpdateSprinterArgs = {
-  input?: Maybe<UpdateSprinterInput>;
-};
-
-
-export type MutationDeleteSprinterArgs = {
-  input?: Maybe<DeleteSprinterInput>;
+export type MutationCreateModuleArgs = {
+  data: ModuleInput;
 };
 
 
 export type MutationCreateSprintArgs = {
-  input?: Maybe<CreateSprintInput>;
+  data: SprintInput;
 };
 
 
-export type MutationUpdateSprintArgs = {
-  input?: Maybe<UpdateSprintInput>;
-};
-
-
-export type MutationDeleteSprintArgs = {
-  input?: Maybe<DeleteSprintInput>;
+export type MutationCreateSprintDayArgs = {
+  data: SprintDayInput;
 };
 
 
 export type MutationCreateStickyArgs = {
-  input?: Maybe<CreateStickyInput>;
+  data: StickyInput;
 };
 
 
-export type MutationUpdateStickyArgs = {
-  input?: Maybe<UpdateStickyInput>;
+export type MutationCreateUploadFileArgs = {
+  data: UploadFileInput;
+};
+
+
+export type MutationCreateUploadFolderArgs = {
+  data: UploadFolderInput;
+};
+
+
+export type MutationCreateUserProfileArgs = {
+  data: UserProfileInput;
+};
+
+
+export type MutationCreateUsersPermissionsRoleArgs = {
+  data: UsersPermissionsRoleInput;
+};
+
+
+export type MutationCreateUsersPermissionsUserArgs = {
+  data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteCustomLinksCustomLinkArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteCustomLinksTempuriArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteEzformsRecipientArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteEzformsSubmissionArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteModuleArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteSprintArgs = {
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationDeleteSprintDayArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
 export type MutationDeleteStickyArgs = {
-  input?: Maybe<DeleteStickyInput>;
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationCreateStickyActivityLogArgs = {
-  input?: Maybe<CreateStickyActivityLogInput>;
+export type MutationDeleteUploadFileArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationUpdateStickyActivityLogArgs = {
-  input?: Maybe<UpdateStickyActivityLogInput>;
+export type MutationDeleteUploadFolderArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationDeleteStickyActivityLogArgs = {
-  input?: Maybe<DeleteStickyActivityLogInput>;
+export type MutationDeleteUserProfileArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationDeleteFileArgs = {
-  input?: Maybe<DeleteFileInput>;
+export type MutationDeleteUsersPermissionsRoleArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationCreateRoleArgs = {
-  input?: Maybe<CreateRoleInput>;
+export type MutationDeleteUsersPermissionsUserArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
-export type MutationUpdateRoleArgs = {
-  input?: Maybe<UpdateRoleInput>;
+export type MutationEmailConfirmationArgs = {
+  confirmation: Scalars['String']['input'];
 };
 
 
-export type MutationDeleteRoleArgs = {
-  input?: Maybe<DeleteRoleInput>;
-};
-
-
-export type MutationCreateUserArgs = {
-  input?: Maybe<CreateUserInput>;
-};
-
-
-export type MutationUpdateUserArgs = {
-  input?: Maybe<UpdateUserInput>;
-};
-
-
-export type MutationDeleteUserArgs = {
-  input?: Maybe<DeleteUserInput>;
-};
-
-
-export type MutationUploadArgs = {
-  refId?: Maybe<Scalars['ID']>;
-  ref?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  source?: Maybe<Scalars['String']>;
-  info?: Maybe<FileInfoInput>;
-  file: Scalars['Upload'];
-};
-
-
-export type MutationMultipleUploadArgs = {
-  refId?: Maybe<Scalars['ID']>;
-  ref?: Maybe<Scalars['String']>;
-  field?: Maybe<Scalars['String']>;
-  source?: Maybe<Scalars['String']>;
-  files: Array<Maybe<Scalars['Upload']>>;
-};
-
-
-export type MutationUpdateFileInfoArgs = {
-  id: Scalars['ID'];
-  info: FileInfoInput;
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String']['input'];
 };
 
 
@@ -562,119 +674,136 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationMultipleUploadArgs = {
+  field?: InputMaybe<Scalars['String']['input']>;
+  files: Array<InputMaybe<Scalars['Upload']['input']>>;
+  ref?: InputMaybe<Scalars['String']['input']>;
+  refId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
 
 
-export type MutationForgotPasswordArgs = {
-  email: Scalars['String'];
+export type MutationRemoveFileArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
 export type MutationResetPasswordArgs = {
-  password: Scalars['String'];
-  passwordConfirmation: Scalars['String'];
-  code: Scalars['String'];
+  code: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  passwordConfirmation: Scalars['String']['input'];
 };
 
 
-export type MutationEmailConfirmationArgs = {
-  confirmation: Scalars['String'];
+export type MutationUpdateCustomLinksCustomLinkArgs = {
+  data: CustomLinksCustomLinkInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickies = {
-  __typename?: 'NextStickies';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  default_sticky?: Maybe<DefaultStickies>;
-  sprint?: Maybe<Sprints>;
-  sprinter?: Maybe<Sprinters>;
-  published_at?: Maybe<Scalars['DateTime']>;
+
+export type MutationUpdateCustomLinksTempuriArgs = {
+  data: CustomLinksTempuriInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesAggregator = {
-  __typename?: 'NextStickiesAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
+
+export type MutationUpdateEzformsRecipientArgs = {
+  data: EzformsRecipientInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnection = {
-  __typename?: 'NextStickiesConnection';
-  values?: Maybe<Array<Maybe<NextStickies>>>;
-  groupBy?: Maybe<NextStickiesGroupBy>;
-  aggregate?: Maybe<NextStickiesAggregator>;
+
+export type MutationUpdateEzformsSubmissionArgs = {
+  data: EzformsSubmissionInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionCreatedAt = {
-  __typename?: 'NextStickiesConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateFileInfoArgs = {
+  id: Scalars['ID']['input'];
+  info?: InputMaybe<FileInfoInput>;
 };
 
-export type NextStickiesConnectionDefault_Sticky = {
-  __typename?: 'NextStickiesConnectionDefault_sticky';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateModuleArgs = {
+  data: ModuleInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionId = {
-  __typename?: 'NextStickiesConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateSprintArgs = {
+  data: SprintInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionPublished_At = {
-  __typename?: 'NextStickiesConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateSprintDayArgs = {
+  data: SprintDayInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionSprint = {
-  __typename?: 'NextStickiesConnectionSprint';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateStickyArgs = {
+  data: StickyInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionSprinter = {
-  __typename?: 'NextStickiesConnectionSprinter';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateUploadFileArgs = {
+  data: UploadFileInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnectionUpdatedAt = {
-  __typename?: 'NextStickiesConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateUploadFolderArgs = {
+  data: UploadFolderInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesConnection_Id = {
-  __typename?: 'NextStickiesConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<NextStickiesConnection>;
+
+export type MutationUpdateUserProfileArgs = {
+  data: UserProfileInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickiesGroupBy = {
-  __typename?: 'NextStickiesGroupBy';
-  id?: Maybe<Array<Maybe<NextStickiesConnectionId>>>;
-  _id?: Maybe<Array<Maybe<NextStickiesConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<NextStickiesConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<NextStickiesConnectionUpdatedAt>>>;
-  default_sticky?: Maybe<Array<Maybe<NextStickiesConnectionDefault_Sticky>>>;
-  sprint?: Maybe<Array<Maybe<NextStickiesConnectionSprint>>>;
-  sprinter?: Maybe<Array<Maybe<NextStickiesConnectionSprinter>>>;
-  published_at?: Maybe<Array<Maybe<NextStickiesConnectionPublished_At>>>;
+
+export type MutationUpdateUsersPermissionsRoleArgs = {
+  data: UsersPermissionsRoleInput;
+  id: Scalars['ID']['input'];
 };
 
-export type NextStickyInput = {
-  default_sticky?: Maybe<Scalars['ID']>;
-  sprint?: Maybe<Scalars['ID']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+
+export type MutationUpdateUsersPermissionsUserArgs = {
+  data: UsersPermissionsUserInput;
+  id: Scalars['ID']['input'];
+};
+
+
+export type MutationUploadArgs = {
+  field?: InputMaybe<Scalars['String']['input']>;
+  file: Scalars['Upload']['input'];
+  info?: InputMaybe<FileInfoInput>;
+  ref?: InputMaybe<Scalars['String']['input']>;
+  refId?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Pagination = {
+  __typename?: 'Pagination';
+  page: Scalars['Int']['output'];
+  pageCount: Scalars['Int']['output'];
+  pageSize: Scalars['Int']['output'];
+  total: Scalars['Int']['output'];
+};
+
+export type PaginationArg = {
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+  pageSize?: InputMaybe<Scalars['Int']['input']>;
+  start?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export enum PublicationState {
@@ -684,1906 +813,847 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
-  category?: Maybe<Categories>;
-  categories?: Maybe<Array<Maybe<Categories>>>;
-  categoriesConnection?: Maybe<CategoriesConnection>;
-  defaultSticky?: Maybe<DefaultStickies>;
-  defaultStickies?: Maybe<Array<Maybe<DefaultStickies>>>;
-  defaultStickiesConnection?: Maybe<DefaultStickiesConnection>;
-  nextSticky?: Maybe<NextStickies>;
-  nextStickies?: Maybe<Array<Maybe<NextStickies>>>;
-  nextStickiesConnection?: Maybe<NextStickiesConnection>;
-  sprintActivityLog?: Maybe<SprintActivityLog>;
-  sprintActivityLogs?: Maybe<Array<Maybe<SprintActivityLog>>>;
-  sprintActivityLogsConnection?: Maybe<SprintActivityLogConnection>;
-  sprinter?: Maybe<Sprinters>;
-  sprinters?: Maybe<Array<Maybe<Sprinters>>>;
-  sprintersConnection?: Maybe<SprintersConnection>;
-  sprint?: Maybe<Sprints>;
-  sprints?: Maybe<Array<Maybe<Sprints>>>;
-  sprintsConnection?: Maybe<SprintsConnection>;
-  sticky?: Maybe<Stickies>;
-  stickies?: Maybe<Array<Maybe<Stickies>>>;
-  stickiesConnection?: Maybe<StickiesConnection>;
-  stickyActivityLog?: Maybe<StickyActivityLog>;
-  stickyActivityLogs?: Maybe<Array<Maybe<StickyActivityLog>>>;
-  stickyActivityLogsConnection?: Maybe<StickyActivityLogConnection>;
-  files?: Maybe<Array<Maybe<UploadFile>>>;
-  filesConnection?: Maybe<UploadFileConnection>;
-  role?: Maybe<UsersPermissionsRole>;
-  /** Retrieve all the existing roles. You can't apply filters on this query. */
-  roles?: Maybe<Array<Maybe<UsersPermissionsRole>>>;
-  rolesConnection?: Maybe<UsersPermissionsRoleConnection>;
-  user?: Maybe<UsersPermissionsUser>;
-  users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
-  usersConnection?: Maybe<UsersPermissionsUserConnection>;
+  customLinksCustomLink?: Maybe<CustomLinksCustomLinkEntityResponse>;
+  customLinksCustomLinks?: Maybe<CustomLinksCustomLinkEntityResponseCollection>;
+  customLinksTempuri?: Maybe<CustomLinksTempuriEntityResponseCollection>;
+  ezformsRecipient?: Maybe<EzformsRecipientEntityResponse>;
+  ezformsRecipients?: Maybe<EzformsRecipientEntityResponseCollection>;
+  ezformsSubmission?: Maybe<EzformsSubmissionEntityResponse>;
+  ezformsSubmissions?: Maybe<EzformsSubmissionEntityResponseCollection>;
+  i18NLocale?: Maybe<I18NLocaleEntityResponse>;
+  i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   me?: Maybe<UsersPermissionsMe>;
+  module?: Maybe<ModuleEntityResponse>;
+  modules?: Maybe<ModuleEntityResponseCollection>;
+  sprint?: Maybe<SprintEntityResponse>;
+  sprintDay?: Maybe<SprintDayEntityResponse>;
+  sprintDays?: Maybe<SprintDayEntityResponseCollection>;
+  sprints?: Maybe<SprintEntityResponseCollection>;
+  stickies?: Maybe<StickyEntityResponseCollection>;
+  sticky?: Maybe<StickyEntityResponse>;
+  uploadFile?: Maybe<UploadFileEntityResponse>;
+  uploadFiles?: Maybe<UploadFileEntityResponseCollection>;
+  uploadFolder?: Maybe<UploadFolderEntityResponse>;
+  uploadFolders?: Maybe<UploadFolderEntityResponseCollection>;
+  userProfile?: Maybe<UserProfileEntityResponse>;
+  userProfiles?: Maybe<UserProfileEntityResponseCollection>;
+  usersPermissionsRole?: Maybe<UsersPermissionsRoleEntityResponse>;
+  usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
+  usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
+  usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
 
-export type QueryCategoryArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryCustomLinksCustomLinkArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryCategoriesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryCustomLinksCustomLinksArgs = {
+  filters?: InputMaybe<CustomLinksCustomLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryCategoriesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryCustomLinksTempuriArgs = {
+  filters?: InputMaybe<CustomLinksTempuriFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryDefaultStickyArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryEzformsRecipientArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryDefaultStickiesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryEzformsRecipientsArgs = {
+  filters?: InputMaybe<EzformsRecipientFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryDefaultStickiesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryEzformsSubmissionArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryNextStickyArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryEzformsSubmissionsArgs = {
+  filters?: InputMaybe<EzformsSubmissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryNextStickiesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryI18NLocaleArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryNextStickiesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryI18NLocalesArgs = {
+  filters?: InputMaybe<I18NLocaleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QuerySprintActivityLogArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryModuleArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QuerySprintActivityLogsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
-};
-
-
-export type QuerySprintActivityLogsConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type QuerySprinterArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
-};
-
-
-export type QuerySprintersArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
-};
-
-
-export type QuerySprintersConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryModulesArgs = {
+  filters?: InputMaybe<ModuleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QuerySprintArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QuerySprintDayArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QuerySprintDaysArgs = {
+  filters?: InputMaybe<SprintDayFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QuerySprintsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
-};
-
-
-export type QuerySprintsConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type QueryStickyArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<SprintFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type QueryStickiesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+  filters?: InputMaybe<StickyFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryStickiesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryStickyArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryStickyActivityLogArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryUploadFileArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryStickyActivityLogsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryUploadFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryStickyActivityLogsConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryUploadFolderArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryFilesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryUploadFoldersArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryFilesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryUserProfileArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryRoleArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryUserProfilesArgs = {
+  filters?: InputMaybe<UserProfileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryRolesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryUsersPermissionsRoleArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryRolesConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type QueryUsersPermissionsRolesArgs = {
+  filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
-export type QueryUserArgs = {
-  id: Scalars['ID'];
-  publicationState?: Maybe<PublicationState>;
+export type QueryUsersPermissionsUserArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 
-export type QueryUsersArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-  publicationState?: Maybe<PublicationState>;
+export type QueryUsersPermissionsUsersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ResponseCollectionMeta = {
+  __typename?: 'ResponseCollectionMeta';
+  pagination: Pagination;
+};
+
+export type Sprint = {
+  __typename?: 'Sprint';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  end_date?: Maybe<Scalars['DateTime']['output']>;
+  facilitator?: Maybe<UsersPermissionsUserEntityResponse>;
+  location?: Maybe<Scalars['String']['output']>;
+  module?: Maybe<ModuleEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  sponsor?: Maybe<UsersPermissionsUserEntityResponse>;
+  sprint_days?: Maybe<SprintDayEntityResponse>;
+  sprinters?: Maybe<UsersPermissionsUserRelationResponseCollection>;
+  start_date?: Maybe<Scalars['DateTime']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Enum_Sprint_Type>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
-export type QueryUsersConnectionArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type SprintSprintersArgs = {
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type RoleInput = {
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  users?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+export type SprintDay = {
+  __typename?: 'SprintDay';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  order?: Maybe<Scalars['Int']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  start_date_time?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type SprintActivityLog = {
-  __typename?: 'SprintActivityLog';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  sprint?: Maybe<Sprints>;
-  activity?: Maybe<Enum_Sprintactivitylog_Activity>;
-  detail?: Maybe<Scalars['String']>;
-  sprintno: Scalars['Int'];
-  published_at?: Maybe<Scalars['DateTime']>;
+export type SprintDayEntity = {
+  __typename?: 'SprintDayEntity';
+  attributes?: Maybe<SprintDay>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type SprintActivityLogAggregator = {
-  __typename?: 'SprintActivityLogAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-  sum?: Maybe<SprintActivityLogAggregatorSum>;
-  avg?: Maybe<SprintActivityLogAggregatorAvg>;
-  min?: Maybe<SprintActivityLogAggregatorMin>;
-  max?: Maybe<SprintActivityLogAggregatorMax>;
+export type SprintDayEntityResponse = {
+  __typename?: 'SprintDayEntityResponse';
+  data?: Maybe<SprintDayEntity>;
 };
 
-export type SprintActivityLogAggregatorAvg = {
-  __typename?: 'SprintActivityLogAggregatorAvg';
-  sprintno?: Maybe<Scalars['Float']>;
+export type SprintDayEntityResponseCollection = {
+  __typename?: 'SprintDayEntityResponseCollection';
+  data: Array<SprintDayEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type SprintActivityLogAggregatorMax = {
-  __typename?: 'SprintActivityLogAggregatorMax';
-  sprintno?: Maybe<Scalars['Float']>;
+export type SprintDayFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SprintDayFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<SprintDayFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SprintDayFiltersInput>>>;
+  order?: InputMaybe<IntFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  start_date_time?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type SprintActivityLogAggregatorMin = {
-  __typename?: 'SprintActivityLogAggregatorMin';
-  sprintno?: Maybe<Scalars['Float']>;
+export type SprintDayInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  order?: InputMaybe<Scalars['Int']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  start_date_time?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export type SprintActivityLogAggregatorSum = {
-  __typename?: 'SprintActivityLogAggregatorSum';
-  sprintno?: Maybe<Scalars['Float']>;
+export type SprintEntity = {
+  __typename?: 'SprintEntity';
+  attributes?: Maybe<Sprint>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type SprintActivityLogConnection = {
-  __typename?: 'SprintActivityLogConnection';
-  values?: Maybe<Array<Maybe<SprintActivityLog>>>;
-  groupBy?: Maybe<SprintActivityLogGroupBy>;
-  aggregate?: Maybe<SprintActivityLogAggregator>;
+export type SprintEntityResponse = {
+  __typename?: 'SprintEntityResponse';
+  data?: Maybe<SprintEntity>;
 };
 
-export type SprintActivityLogConnectionActivity = {
-  __typename?: 'SprintActivityLogConnectionActivity';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintActivityLogConnection>;
+export type SprintEntityResponseCollection = {
+  __typename?: 'SprintEntityResponseCollection';
+  data: Array<SprintEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type SprintActivityLogConnectionCreatedAt = {
-  __typename?: 'SprintActivityLogConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionDetail = {
-  __typename?: 'SprintActivityLogConnectionDetail';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionId = {
-  __typename?: 'SprintActivityLogConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionPublished_At = {
-  __typename?: 'SprintActivityLogConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionSprint = {
-  __typename?: 'SprintActivityLogConnectionSprint';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionSprintno = {
-  __typename?: 'SprintActivityLogConnectionSprintno';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnectionUpdatedAt = {
-  __typename?: 'SprintActivityLogConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogConnection_Id = {
-  __typename?: 'SprintActivityLogConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintActivityLogConnection>;
-};
-
-export type SprintActivityLogGroupBy = {
-  __typename?: 'SprintActivityLogGroupBy';
-  id?: Maybe<Array<Maybe<SprintActivityLogConnectionId>>>;
-  _id?: Maybe<Array<Maybe<SprintActivityLogConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<SprintActivityLogConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<SprintActivityLogConnectionUpdatedAt>>>;
-  sprint?: Maybe<Array<Maybe<SprintActivityLogConnectionSprint>>>;
-  activity?: Maybe<Array<Maybe<SprintActivityLogConnectionActivity>>>;
-  detail?: Maybe<Array<Maybe<SprintActivityLogConnectionDetail>>>;
-  sprintno?: Maybe<Array<Maybe<SprintActivityLogConnectionSprintno>>>;
-  published_at?: Maybe<Array<Maybe<SprintActivityLogConnectionPublished_At>>>;
-};
-
-export type SprintActivityLogInput = {
-  sprint?: Maybe<Scalars['ID']>;
-  activity?: Maybe<Enum_Sprintactivitylog_Activity>;
-  detail?: Maybe<Scalars['String']>;
-  sprintno: Scalars['Int'];
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+export type SprintFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<SprintFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  end_date?: InputMaybe<DateTimeFilterInput>;
+  facilitator?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  location?: InputMaybe<StringFilterInput>;
+  module?: InputMaybe<ModuleFiltersInput>;
+  not?: InputMaybe<SprintFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<SprintFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  sponsor?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  sprint_days?: InputMaybe<SprintDayFiltersInput>;
+  sprinters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  start_date?: InputMaybe<DateTimeFilterInput>;
+  title?: InputMaybe<StringFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type SprintInput = {
-  name?: Maybe<Scalars['String']>;
-  sprinters?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  description?: Maybe<Scalars['String']>;
-  facilitators?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type SprinterInput = {
-  lastname?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
-  stickies?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  sprints?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  displayname?: Maybe<Scalars['String']>;
-  user?: Maybe<Scalars['ID']>;
-  facilitator?: Maybe<Scalars['ID']>;
-  next_stickies?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type Sprinters = {
-  __typename?: 'Sprinters';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  lastname?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
-  displayname?: Maybe<Scalars['String']>;
-  user?: Maybe<UsersPermissionsUser>;
-  facilitator?: Maybe<Sprints>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  stickies?: Maybe<Array<Maybe<Stickies>>>;
-  sprints?: Maybe<Array<Maybe<Sprints>>>;
-  image?: Maybe<Array<Maybe<UploadFile>>>;
-  next_stickies?: Maybe<Array<Maybe<NextStickies>>>;
-};
-
-
-export type SprintersStickiesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type SprintersSprintsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type SprintersImageArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type SprintersNext_StickiesArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-export type SprintersAggregator = {
-  __typename?: 'SprintersAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-};
-
-export type SprintersConnection = {
-  __typename?: 'SprintersConnection';
-  values?: Maybe<Array<Maybe<Sprinters>>>;
-  groupBy?: Maybe<SprintersGroupBy>;
-  aggregate?: Maybe<SprintersAggregator>;
-};
-
-export type SprintersConnectionCreatedAt = {
-  __typename?: 'SprintersConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionDisplayname = {
-  __typename?: 'SprintersConnectionDisplayname';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionFacilitator = {
-  __typename?: 'SprintersConnectionFacilitator';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionFirstname = {
-  __typename?: 'SprintersConnectionFirstname';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionId = {
-  __typename?: 'SprintersConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionLastname = {
-  __typename?: 'SprintersConnectionLastname';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionPublished_At = {
-  __typename?: 'SprintersConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionUpdatedAt = {
-  __typename?: 'SprintersConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnectionUser = {
-  __typename?: 'SprintersConnectionUser';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersConnection_Id = {
-  __typename?: 'SprintersConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintersConnection>;
-};
-
-export type SprintersGroupBy = {
-  __typename?: 'SprintersGroupBy';
-  id?: Maybe<Array<Maybe<SprintersConnectionId>>>;
-  _id?: Maybe<Array<Maybe<SprintersConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<SprintersConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<SprintersConnectionUpdatedAt>>>;
-  lastname?: Maybe<Array<Maybe<SprintersConnectionLastname>>>;
-  firstname?: Maybe<Array<Maybe<SprintersConnectionFirstname>>>;
-  displayname?: Maybe<Array<Maybe<SprintersConnectionDisplayname>>>;
-  user?: Maybe<Array<Maybe<SprintersConnectionUser>>>;
-  facilitator?: Maybe<Array<Maybe<SprintersConnectionFacilitator>>>;
-  published_at?: Maybe<Array<Maybe<SprintersConnectionPublished_At>>>;
-};
-
-export type Sprints = {
-  __typename?: 'Sprints';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  sprinters?: Maybe<Array<Maybe<Sprinters>>>;
-  facilitators?: Maybe<Array<Maybe<Sprinters>>>;
-};
-
-
-export type SprintsSprintersArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-
-export type SprintsFacilitatorsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
-};
-
-export type SprintsAggregator = {
-  __typename?: 'SprintsAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-};
-
-export type SprintsConnection = {
-  __typename?: 'SprintsConnection';
-  values?: Maybe<Array<Maybe<Sprints>>>;
-  groupBy?: Maybe<SprintsGroupBy>;
-  aggregate?: Maybe<SprintsAggregator>;
-};
-
-export type SprintsConnectionCreatedAt = {
-  __typename?: 'SprintsConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnectionDescription = {
-  __typename?: 'SprintsConnectionDescription';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnectionId = {
-  __typename?: 'SprintsConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnectionName = {
-  __typename?: 'SprintsConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnectionPublished_At = {
-  __typename?: 'SprintsConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnectionUpdatedAt = {
-  __typename?: 'SprintsConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsConnection_Id = {
-  __typename?: 'SprintsConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<SprintsConnection>;
-};
-
-export type SprintsGroupBy = {
-  __typename?: 'SprintsGroupBy';
-  id?: Maybe<Array<Maybe<SprintsConnectionId>>>;
-  _id?: Maybe<Array<Maybe<SprintsConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<SprintsConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<SprintsConnectionUpdatedAt>>>;
-  name?: Maybe<Array<Maybe<SprintsConnectionName>>>;
-  description?: Maybe<Array<Maybe<SprintsConnectionDescription>>>;
-  published_at?: Maybe<Array<Maybe<SprintsConnectionPublished_At>>>;
-};
-
-export type Stickies = {
-  __typename?: 'Stickies';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name?: Maybe<Scalars['String']>;
-  sprinter?: Maybe<Sprinters>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  status?: Maybe<Enum_Stickies_Status>;
-  order?: Maybe<Scalars['Int']>;
-  icon?: Maybe<Scalars['String']>;
-  method?: Maybe<Scalars['String']>;
-  category?: Maybe<Categories>;
-  sprint?: Maybe<Sprints>;
-  published_at?: Maybe<Scalars['DateTime']>;
-};
-
-export type StickiesAggregator = {
-  __typename?: 'StickiesAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-  sum?: Maybe<StickiesAggregatorSum>;
-  avg?: Maybe<StickiesAggregatorAvg>;
-  min?: Maybe<StickiesAggregatorMin>;
-  max?: Maybe<StickiesAggregatorMax>;
-};
-
-export type StickiesAggregatorAvg = {
-  __typename?: 'StickiesAggregatorAvg';
-  points?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
-};
-
-export type StickiesAggregatorMax = {
-  __typename?: 'StickiesAggregatorMax';
-  points?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
-};
-
-export type StickiesAggregatorMin = {
-  __typename?: 'StickiesAggregatorMin';
-  points?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
-};
-
-export type StickiesAggregatorSum = {
-  __typename?: 'StickiesAggregatorSum';
-  points?: Maybe<Scalars['Float']>;
-  order?: Maybe<Scalars['Float']>;
-};
-
-export type StickiesConnection = {
-  __typename?: 'StickiesConnection';
-  values?: Maybe<Array<Maybe<Stickies>>>;
-  groupBy?: Maybe<StickiesGroupBy>;
-  aggregate?: Maybe<StickiesAggregator>;
-};
-
-export type StickiesConnectionCategory = {
-  __typename?: 'StickiesConnectionCategory';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionCreatedAt = {
-  __typename?: 'StickiesConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionDescription = {
-  __typename?: 'StickiesConnectionDescription';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionIcon = {
-  __typename?: 'StickiesConnectionIcon';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionId = {
-  __typename?: 'StickiesConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionMethod = {
-  __typename?: 'StickiesConnectionMethod';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionName = {
-  __typename?: 'StickiesConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionOrder = {
-  __typename?: 'StickiesConnectionOrder';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionPoints = {
-  __typename?: 'StickiesConnectionPoints';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionPublished_At = {
-  __typename?: 'StickiesConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionSprint = {
-  __typename?: 'StickiesConnectionSprint';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionSprinter = {
-  __typename?: 'StickiesConnectionSprinter';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionStatus = {
-  __typename?: 'StickiesConnectionStatus';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnectionUpdatedAt = {
-  __typename?: 'StickiesConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesConnection_Id = {
-  __typename?: 'StickiesConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickiesConnection>;
-};
-
-export type StickiesGroupBy = {
-  __typename?: 'StickiesGroupBy';
-  id?: Maybe<Array<Maybe<StickiesConnectionId>>>;
-  _id?: Maybe<Array<Maybe<StickiesConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<StickiesConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<StickiesConnectionUpdatedAt>>>;
-  name?: Maybe<Array<Maybe<StickiesConnectionName>>>;
-  sprinter?: Maybe<Array<Maybe<StickiesConnectionSprinter>>>;
-  description?: Maybe<Array<Maybe<StickiesConnectionDescription>>>;
-  points?: Maybe<Array<Maybe<StickiesConnectionPoints>>>;
-  status?: Maybe<Array<Maybe<StickiesConnectionStatus>>>;
-  order?: Maybe<Array<Maybe<StickiesConnectionOrder>>>;
-  icon?: Maybe<Array<Maybe<StickiesConnectionIcon>>>;
-  method?: Maybe<Array<Maybe<StickiesConnectionMethod>>>;
-  category?: Maybe<Array<Maybe<StickiesConnectionCategory>>>;
-  sprint?: Maybe<Array<Maybe<StickiesConnectionSprint>>>;
-  published_at?: Maybe<Array<Maybe<StickiesConnectionPublished_At>>>;
-};
-
-export type StickyActivityLog = {
-  __typename?: 'StickyActivityLog';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  sticky?: Maybe<Stickies>;
-  activity?: Maybe<Enum_Stickyactivitylog_Activity>;
-  details?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-};
-
-export type StickyActivityLogAggregator = {
-  __typename?: 'StickyActivityLogAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-};
-
-export type StickyActivityLogConnection = {
-  __typename?: 'StickyActivityLogConnection';
-  values?: Maybe<Array<Maybe<StickyActivityLog>>>;
-  groupBy?: Maybe<StickyActivityLogGroupBy>;
-  aggregate?: Maybe<StickyActivityLogAggregator>;
-};
-
-export type StickyActivityLogConnectionActivity = {
-  __typename?: 'StickyActivityLogConnectionActivity';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionCreatedAt = {
-  __typename?: 'StickyActivityLogConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionDetails = {
-  __typename?: 'StickyActivityLogConnectionDetails';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionId = {
-  __typename?: 'StickyActivityLogConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionPublished_At = {
-  __typename?: 'StickyActivityLogConnectionPublished_at';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionSticky = {
-  __typename?: 'StickyActivityLogConnectionSticky';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnectionUpdatedAt = {
-  __typename?: 'StickyActivityLogConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogConnection_Id = {
-  __typename?: 'StickyActivityLogConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<StickyActivityLogConnection>;
-};
-
-export type StickyActivityLogGroupBy = {
-  __typename?: 'StickyActivityLogGroupBy';
-  id?: Maybe<Array<Maybe<StickyActivityLogConnectionId>>>;
-  _id?: Maybe<Array<Maybe<StickyActivityLogConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<StickyActivityLogConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<StickyActivityLogConnectionUpdatedAt>>>;
-  sticky?: Maybe<Array<Maybe<StickyActivityLogConnectionSticky>>>;
-  activity?: Maybe<Array<Maybe<StickyActivityLogConnectionActivity>>>;
-  details?: Maybe<Array<Maybe<StickyActivityLogConnectionDetails>>>;
-  published_at?: Maybe<Array<Maybe<StickyActivityLogConnectionPublished_At>>>;
-};
-
-export type StickyActivityLogInput = {
-  sticky?: Maybe<Scalars['ID']>;
-  activity?: Maybe<Enum_Stickyactivitylog_Activity>;
-  details?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  end_date?: InputMaybe<Scalars['DateTime']['input']>;
+  facilitator?: InputMaybe<Scalars['ID']['input']>;
+  location?: InputMaybe<Scalars['String']['input']>;
+  module?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  sponsor?: InputMaybe<Scalars['ID']['input']>;
+  sprint_days?: InputMaybe<Scalars['ID']['input']>;
+  sprinters?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  start_date?: InputMaybe<Scalars['DateTime']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<Enum_Sprint_Type>;
+};
+
+export type SprintRelationResponseCollection = {
+  __typename?: 'SprintRelationResponseCollection';
+  data: Array<SprintEntity>;
+};
+
+export type Sticky = {
+  __typename?: 'Sticky';
+  completed?: Maybe<Scalars['Boolean']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  media?: Maybe<UploadFileEntityResponse>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type StickyEntity = {
+  __typename?: 'StickyEntity';
+  attributes?: Maybe<Sticky>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type StickyEntityResponse = {
+  __typename?: 'StickyEntityResponse';
+  data?: Maybe<StickyEntity>;
+};
+
+export type StickyEntityResponseCollection = {
+  __typename?: 'StickyEntityResponseCollection';
+  data: Array<StickyEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type StickyFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<StickyFiltersInput>>>;
+  completed?: InputMaybe<BooleanFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<StickyFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<StickyFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type StickyInput = {
-  name?: Maybe<Scalars['String']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  status?: Maybe<Enum_Stickies_Status>;
-  order?: Maybe<Scalars['Int']>;
-  icon?: Maybe<Scalars['String']>;
-  method?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['ID']>;
-  sprint?: Maybe<Scalars['ID']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
+  completed?: InputMaybe<Scalars['Boolean']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  media?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-
+export type StringFilterInput = {
+  and?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  between?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  contains?: InputMaybe<Scalars['String']['input']>;
+  containsi?: InputMaybe<Scalars['String']['input']>;
+  endsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  eqi?: InputMaybe<Scalars['String']['input']>;
+  gt?: InputMaybe<Scalars['String']['input']>;
+  gte?: InputMaybe<Scalars['String']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  lt?: InputMaybe<Scalars['String']['input']>;
+  lte?: InputMaybe<Scalars['String']['input']>;
+  ne?: InputMaybe<Scalars['String']['input']>;
+  not?: InputMaybe<StringFilterInput>;
+  notContains?: InputMaybe<Scalars['String']['input']>;
+  notContainsi?: InputMaybe<Scalars['String']['input']>;
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  notNull?: InputMaybe<Scalars['Boolean']['input']>;
+  null?: InputMaybe<Scalars['Boolean']['input']>;
+  or?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+};
 
 export type UploadFile = {
   __typename?: 'UploadFile';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  name: Scalars['String'];
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  formats?: Maybe<Scalars['JSON']>;
-  hash: Scalars['String'];
-  ext?: Maybe<Scalars['String']>;
-  mime: Scalars['String'];
-  size: Scalars['Float'];
-  url: Scalars['String'];
-  previewUrl?: Maybe<Scalars['String']>;
-  provider: Scalars['String'];
-  provider_metadata?: Maybe<Scalars['JSON']>;
-  related?: Maybe<Array<Maybe<Morph>>>;
+  alternativeText?: Maybe<Scalars['String']['output']>;
+  caption?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  ext?: Maybe<Scalars['String']['output']>;
+  formats?: Maybe<Scalars['JSON']['output']>;
+  hash: Scalars['String']['output'];
+  height?: Maybe<Scalars['Int']['output']>;
+  mime: Scalars['String']['output'];
+  name: Scalars['String']['output'];
+  previewUrl?: Maybe<Scalars['String']['output']>;
+  provider: Scalars['String']['output'];
+  provider_metadata?: Maybe<Scalars['JSON']['output']>;
+  related?: Maybe<Array<Maybe<GenericMorph>>>;
+  size: Scalars['Float']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url: Scalars['String']['output'];
+  width?: Maybe<Scalars['Int']['output']>;
+};
+
+export type UploadFileEntity = {
+  __typename?: 'UploadFileEntity';
+  attributes?: Maybe<UploadFile>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type UploadFileEntityResponse = {
+  __typename?: 'UploadFileEntityResponse';
+  data?: Maybe<UploadFileEntity>;
+};
+
+export type UploadFileEntityResponseCollection = {
+  __typename?: 'UploadFileEntityResponseCollection';
+  data: Array<UploadFileEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UploadFileFiltersInput = {
+  alternativeText?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  caption?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  ext?: InputMaybe<StringFilterInput>;
+  folder?: InputMaybe<UploadFolderFiltersInput>;
+  folderPath?: InputMaybe<StringFilterInput>;
+  formats?: InputMaybe<JsonFilterInput>;
+  hash?: InputMaybe<StringFilterInput>;
+  height?: InputMaybe<IntFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  mime?: InputMaybe<StringFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFileFiltersInput>>>;
+  previewUrl?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  provider_metadata?: InputMaybe<JsonFilterInput>;
+  size?: InputMaybe<FloatFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+};
+
+export type UploadFileInput = {
+  alternativeText?: InputMaybe<Scalars['String']['input']>;
+  caption?: InputMaybe<Scalars['String']['input']>;
+  ext?: InputMaybe<Scalars['String']['input']>;
+  folder?: InputMaybe<Scalars['ID']['input']>;
+  folderPath?: InputMaybe<Scalars['String']['input']>;
+  formats?: InputMaybe<Scalars['JSON']['input']>;
+  hash?: InputMaybe<Scalars['String']['input']>;
+  height?: InputMaybe<Scalars['Int']['input']>;
+  mime?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  previewUrl?: InputMaybe<Scalars['String']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  provider_metadata?: InputMaybe<Scalars['JSON']['input']>;
+  size?: InputMaybe<Scalars['Float']['input']>;
+  url?: InputMaybe<Scalars['String']['input']>;
+  width?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type UploadFileRelationResponseCollection = {
+  __typename?: 'UploadFileRelationResponseCollection';
+  data: Array<UploadFileEntity>;
+};
+
+export type UploadFolder = {
+  __typename?: 'UploadFolder';
+  children?: Maybe<UploadFolderRelationResponseCollection>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  files?: Maybe<UploadFileRelationResponseCollection>;
+  name: Scalars['String']['output'];
+  parent?: Maybe<UploadFolderEntityResponse>;
+  path: Scalars['String']['output'];
+  pathId: Scalars['Int']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 
-export type UploadFileRelatedArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+export type UploadFolderChildrenArgs = {
+  filters?: InputMaybe<UploadFolderFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type UploadFileAggregator = {
-  __typename?: 'UploadFileAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-  sum?: Maybe<UploadFileAggregatorSum>;
-  avg?: Maybe<UploadFileAggregatorAvg>;
-  min?: Maybe<UploadFileAggregatorMin>;
-  max?: Maybe<UploadFileAggregatorMax>;
+
+export type UploadFolderFilesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type UploadFileAggregatorAvg = {
-  __typename?: 'UploadFileAggregatorAvg';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  size?: Maybe<Scalars['Float']>;
+export type UploadFolderEntity = {
+  __typename?: 'UploadFolderEntity';
+  attributes?: Maybe<UploadFolder>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type UploadFileAggregatorMax = {
-  __typename?: 'UploadFileAggregatorMax';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  size?: Maybe<Scalars['Float']>;
+export type UploadFolderEntityResponse = {
+  __typename?: 'UploadFolderEntityResponse';
+  data?: Maybe<UploadFolderEntity>;
 };
 
-export type UploadFileAggregatorMin = {
-  __typename?: 'UploadFileAggregatorMin';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  size?: Maybe<Scalars['Float']>;
+export type UploadFolderEntityResponseCollection = {
+  __typename?: 'UploadFolderEntityResponseCollection';
+  data: Array<UploadFolderEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type UploadFileAggregatorSum = {
-  __typename?: 'UploadFileAggregatorSum';
-  width?: Maybe<Scalars['Float']>;
-  height?: Maybe<Scalars['Float']>;
-  size?: Maybe<Scalars['Float']>;
+export type UploadFolderFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  children?: InputMaybe<UploadFolderFiltersInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  files?: InputMaybe<UploadFileFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UploadFolderFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UploadFolderFiltersInput>>>;
+  parent?: InputMaybe<UploadFolderFiltersInput>;
+  path?: InputMaybe<StringFilterInput>;
+  pathId?: InputMaybe<IntFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
-export type UploadFileConnection = {
-  __typename?: 'UploadFileConnection';
-  values?: Maybe<Array<Maybe<UploadFile>>>;
-  groupBy?: Maybe<UploadFileGroupBy>;
-  aggregate?: Maybe<UploadFileAggregator>;
+export type UploadFolderInput = {
+  children?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  files?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  parent?: InputMaybe<Scalars['ID']['input']>;
+  path?: InputMaybe<Scalars['String']['input']>;
+  pathId?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type UploadFileConnectionAlternativeText = {
-  __typename?: 'UploadFileConnectionAlternativeText';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UploadFolderRelationResponseCollection = {
+  __typename?: 'UploadFolderRelationResponseCollection';
+  data: Array<UploadFolderEntity>;
 };
 
-export type UploadFileConnectionCaption = {
-  __typename?: 'UploadFileConnectionCaption';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfile = {
+  __typename?: 'UserProfile';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  user?: Maybe<UsersPermissionsUserEntityResponse>;
 };
 
-export type UploadFileConnectionCreatedAt = {
-  __typename?: 'UploadFileConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfileEntity = {
+  __typename?: 'UserProfileEntity';
+  attributes?: Maybe<UserProfile>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type UploadFileConnectionExt = {
-  __typename?: 'UploadFileConnectionExt';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfileEntityResponse = {
+  __typename?: 'UserProfileEntityResponse';
+  data?: Maybe<UserProfileEntity>;
 };
 
-export type UploadFileConnectionFormats = {
-  __typename?: 'UploadFileConnectionFormats';
-  key?: Maybe<Scalars['JSON']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfileEntityResponseCollection = {
+  __typename?: 'UserProfileEntityResponseCollection';
+  data: Array<UserProfileEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type UploadFileConnectionHash = {
-  __typename?: 'UploadFileConnectionHash';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfileFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UserProfileFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UserProfileFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UserProfileFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  user?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
-export type UploadFileConnectionHeight = {
-  __typename?: 'UploadFileConnectionHeight';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UserProfileInput = {
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  user?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type UploadFileConnectionId = {
-  __typename?: 'UploadFileConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UploadFileConnection>;
+export type UsersPermissionsCreateRolePayload = {
+  __typename?: 'UsersPermissionsCreateRolePayload';
+  ok: Scalars['Boolean']['output'];
 };
 
-export type UploadFileConnectionMime = {
-  __typename?: 'UploadFileConnectionMime';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionName = {
-  __typename?: 'UploadFileConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionPreviewUrl = {
-  __typename?: 'UploadFileConnectionPreviewUrl';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionProvider = {
-  __typename?: 'UploadFileConnectionProvider';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionProvider_Metadata = {
-  __typename?: 'UploadFileConnectionProvider_metadata';
-  key?: Maybe<Scalars['JSON']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionSize = {
-  __typename?: 'UploadFileConnectionSize';
-  key?: Maybe<Scalars['Float']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionUpdatedAt = {
-  __typename?: 'UploadFileConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionUrl = {
-  __typename?: 'UploadFileConnectionUrl';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnectionWidth = {
-  __typename?: 'UploadFileConnectionWidth';
-  key?: Maybe<Scalars['Int']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileConnection_Id = {
-  __typename?: 'UploadFileConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UploadFileConnection>;
-};
-
-export type UploadFileGroupBy = {
-  __typename?: 'UploadFileGroupBy';
-  id?: Maybe<Array<Maybe<UploadFileConnectionId>>>;
-  _id?: Maybe<Array<Maybe<UploadFileConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<UploadFileConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<UploadFileConnectionUpdatedAt>>>;
-  name?: Maybe<Array<Maybe<UploadFileConnectionName>>>;
-  alternativeText?: Maybe<Array<Maybe<UploadFileConnectionAlternativeText>>>;
-  caption?: Maybe<Array<Maybe<UploadFileConnectionCaption>>>;
-  width?: Maybe<Array<Maybe<UploadFileConnectionWidth>>>;
-  height?: Maybe<Array<Maybe<UploadFileConnectionHeight>>>;
-  formats?: Maybe<Array<Maybe<UploadFileConnectionFormats>>>;
-  hash?: Maybe<Array<Maybe<UploadFileConnectionHash>>>;
-  ext?: Maybe<Array<Maybe<UploadFileConnectionExt>>>;
-  mime?: Maybe<Array<Maybe<UploadFileConnectionMime>>>;
-  size?: Maybe<Array<Maybe<UploadFileConnectionSize>>>;
-  url?: Maybe<Array<Maybe<UploadFileConnectionUrl>>>;
-  previewUrl?: Maybe<Array<Maybe<UploadFileConnectionPreviewUrl>>>;
-  provider?: Maybe<Array<Maybe<UploadFileConnectionProvider>>>;
-  provider_metadata?: Maybe<Array<Maybe<UploadFileConnectionProvider_Metadata>>>;
-};
-
-export type UserInput = {
-  username: Scalars['String'];
-  email: Scalars['String'];
-  provider?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  resetPasswordToken?: Maybe<Scalars['String']>;
-  confirmationToken?: Maybe<Scalars['String']>;
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<Scalars['ID']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type UserPermissionsPasswordPayload = {
-  __typename?: 'UserPermissionsPasswordPayload';
-  ok: Scalars['Boolean'];
+export type UsersPermissionsDeleteRolePayload = {
+  __typename?: 'UsersPermissionsDeleteRolePayload';
+  ok: Scalars['Boolean']['output'];
 };
 
 export type UsersPermissionsLoginInput = {
-  identifier: Scalars['String'];
-  password: Scalars['String'];
-  provider?: Maybe<Scalars['String']>;
+  identifier: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  provider?: Scalars['String']['input'];
 };
 
 export type UsersPermissionsLoginPayload = {
   __typename?: 'UsersPermissionsLoginPayload';
-  jwt?: Maybe<Scalars['String']>;
+  jwt?: Maybe<Scalars['String']['output']>;
   user: UsersPermissionsMe;
 };
 
 export type UsersPermissionsMe = {
   __typename?: 'UsersPermissionsMe';
-  id: Scalars['ID'];
-  username: Scalars['String'];
-  email: Scalars['String'];
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
+  blocked?: Maybe<Scalars['Boolean']['output']>;
+  confirmed?: Maybe<Scalars['Boolean']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
   role?: Maybe<UsersPermissionsMeRole>;
+  username: Scalars['String']['output'];
 };
 
 export type UsersPermissionsMeRole = {
   __typename?: 'UsersPermissionsMeRole';
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type UsersPermissionsPasswordPayload = {
+  __typename?: 'UsersPermissionsPasswordPayload';
+  ok: Scalars['Boolean']['output'];
 };
 
 export type UsersPermissionsPermission = {
   __typename?: 'UsersPermissionsPermission';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  type: Scalars['String'];
-  controller: Scalars['String'];
-  action: Scalars['String'];
-  enabled: Scalars['Boolean'];
-  policy?: Maybe<Scalars['String']>;
-  role?: Maybe<UsersPermissionsRole>;
+  action: Scalars['String']['output'];
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type UsersPermissionsPermissionEntity = {
+  __typename?: 'UsersPermissionsPermissionEntity';
+  attributes?: Maybe<UsersPermissionsPermission>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type UsersPermissionsPermissionFiltersInput = {
+  action?: InputMaybe<StringFilterInput>;
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsPermissionFiltersInput>>>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type UsersPermissionsPermissionRelationResponseCollection = {
+  __typename?: 'UsersPermissionsPermissionRelationResponseCollection';
+  data: Array<UsersPermissionsPermissionEntity>;
 };
 
 export type UsersPermissionsRegisterInput = {
-  username: Scalars['String'];
-  email: Scalars['String'];
-  password: Scalars['String'];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
 };
 
 export type UsersPermissionsRole = {
   __typename?: 'UsersPermissionsRole';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  name: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  permissions?: Maybe<Array<Maybe<UsersPermissionsPermission>>>;
-  users?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  name: Scalars['String']['output'];
+  permissions?: Maybe<UsersPermissionsPermissionRelationResponseCollection>;
+  type?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  users?: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
 
 export type UsersPermissionsRolePermissionsArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+  filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
 export type UsersPermissionsRoleUsersArgs = {
-  sort?: Maybe<Scalars['String']>;
-  limit?: Maybe<Scalars['Int']>;
-  start?: Maybe<Scalars['Int']>;
-  where?: Maybe<Scalars['JSON']>;
+  filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type UsersPermissionsRoleAggregator = {
-  __typename?: 'UsersPermissionsRoleAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
+export type UsersPermissionsRoleEntity = {
+  __typename?: 'UsersPermissionsRoleEntity';
+  attributes?: Maybe<UsersPermissionsRole>;
+  id?: Maybe<Scalars['ID']['output']>;
 };
 
-export type UsersPermissionsRoleConnection = {
-  __typename?: 'UsersPermissionsRoleConnection';
-  values?: Maybe<Array<Maybe<UsersPermissionsRole>>>;
-  groupBy?: Maybe<UsersPermissionsRoleGroupBy>;
-  aggregate?: Maybe<UsersPermissionsRoleAggregator>;
+export type UsersPermissionsRoleEntityResponse = {
+  __typename?: 'UsersPermissionsRoleEntityResponse';
+  data?: Maybe<UsersPermissionsRoleEntity>;
 };
 
-export type UsersPermissionsRoleConnectionDescription = {
-  __typename?: 'UsersPermissionsRoleConnectionDescription';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsRoleConnection>;
+export type UsersPermissionsRoleEntityResponseCollection = {
+  __typename?: 'UsersPermissionsRoleEntityResponseCollection';
+  data: Array<UsersPermissionsRoleEntity>;
+  meta: ResponseCollectionMeta;
 };
 
-export type UsersPermissionsRoleConnectionId = {
-  __typename?: 'UsersPermissionsRoleConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsRoleConnection>;
+export type UsersPermissionsRoleFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  description?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsRoleFiltersInput>>>;
+  permissions?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
+  type?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  users?: InputMaybe<UsersPermissionsUserFiltersInput>;
 };
 
-export type UsersPermissionsRoleConnectionName = {
-  __typename?: 'UsersPermissionsRoleConnectionName';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsRoleConnection>;
+export type UsersPermissionsRoleInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  permissions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  type?: InputMaybe<Scalars['String']['input']>;
+  users?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
 };
 
-export type UsersPermissionsRoleConnectionType = {
-  __typename?: 'UsersPermissionsRoleConnectionType';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsRoleConnection>;
-};
-
-export type UsersPermissionsRoleConnection_Id = {
-  __typename?: 'UsersPermissionsRoleConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsRoleConnection>;
-};
-
-export type UsersPermissionsRoleGroupBy = {
-  __typename?: 'UsersPermissionsRoleGroupBy';
-  id?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionId>>>;
-  _id?: Maybe<Array<Maybe<UsersPermissionsRoleConnection_Id>>>;
-  name?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionName>>>;
-  description?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionDescription>>>;
-  type?: Maybe<Array<Maybe<UsersPermissionsRoleConnectionType>>>;
+export type UsersPermissionsUpdateRolePayload = {
+  __typename?: 'UsersPermissionsUpdateRolePayload';
+  ok: Scalars['Boolean']['output'];
 };
 
 export type UsersPermissionsUser = {
   __typename?: 'UsersPermissionsUser';
-  id: Scalars['ID'];
-  _id: Scalars['ID'];
-  createdAt: Scalars['DateTime'];
-  updatedAt: Scalars['DateTime'];
-  username: Scalars['String'];
-  email: Scalars['String'];
-  provider?: Maybe<Scalars['String']>;
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<UsersPermissionsRole>;
-  sprinter?: Maybe<Sprinters>;
+  blocked?: Maybe<Scalars['Boolean']['output']>;
+  confirmed?: Maybe<Scalars['Boolean']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  email: Scalars['String']['output'];
+  provider?: Maybe<Scalars['String']['output']>;
+  role?: Maybe<UsersPermissionsRoleEntityResponse>;
+  sprints?: Maybe<SprintRelationResponseCollection>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  user_profile?: Maybe<UserProfileEntityResponse>;
+  username: Scalars['String']['output'];
+};
+
+
+export type UsersPermissionsUserSprintsArgs = {
+  filters?: InputMaybe<SprintFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type UsersPermissionsUserEntity = {
+  __typename?: 'UsersPermissionsUserEntity';
+  attributes?: Maybe<UsersPermissionsUser>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type UsersPermissionsUserEntityResponse = {
+  __typename?: 'UsersPermissionsUserEntityResponse';
+  data?: Maybe<UsersPermissionsUserEntity>;
+};
+
+export type UsersPermissionsUserEntityResponseCollection = {
+  __typename?: 'UsersPermissionsUserEntityResponseCollection';
+  data: Array<UsersPermissionsUserEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type UsersPermissionsUserFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  blocked?: InputMaybe<BooleanFilterInput>;
+  confirmationToken?: InputMaybe<StringFilterInput>;
+  confirmed?: InputMaybe<BooleanFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  email?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<UsersPermissionsUserFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<UsersPermissionsUserFiltersInput>>>;
+  password?: InputMaybe<StringFilterInput>;
+  provider?: InputMaybe<StringFilterInput>;
+  resetPasswordToken?: InputMaybe<StringFilterInput>;
+  role?: InputMaybe<UsersPermissionsRoleFiltersInput>;
+  sprints?: InputMaybe<SprintFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+  user_profile?: InputMaybe<UserProfileFiltersInput>;
+  username?: InputMaybe<StringFilterInput>;
+};
+
+export type UsersPermissionsUserInput = {
+  blocked?: InputMaybe<Scalars['Boolean']['input']>;
+  confirmationToken?: InputMaybe<Scalars['String']['input']>;
+  confirmed?: InputMaybe<Scalars['Boolean']['input']>;
+  email?: InputMaybe<Scalars['String']['input']>;
+  password?: InputMaybe<Scalars['String']['input']>;
+  provider?: InputMaybe<Scalars['String']['input']>;
+  resetPasswordToken?: InputMaybe<Scalars['String']['input']>;
+  role?: InputMaybe<Scalars['ID']['input']>;
+  sprints?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  user_profile?: InputMaybe<Scalars['ID']['input']>;
+  username?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type UsersPermissionsUserRelationResponseCollection = {
+  __typename?: 'UsersPermissionsUserRelationResponseCollection';
+  data: Array<UsersPermissionsUserEntity>;
 };
-
-export type UsersPermissionsUserAggregator = {
-  __typename?: 'UsersPermissionsUserAggregator';
-  count?: Maybe<Scalars['Int']>;
-  totalCount?: Maybe<Scalars['Int']>;
-};
-
-export type UsersPermissionsUserConnection = {
-  __typename?: 'UsersPermissionsUserConnection';
-  values?: Maybe<Array<Maybe<UsersPermissionsUser>>>;
-  groupBy?: Maybe<UsersPermissionsUserGroupBy>;
-  aggregate?: Maybe<UsersPermissionsUserAggregator>;
-};
-
-export type UsersPermissionsUserConnectionBlocked = {
-  __typename?: 'UsersPermissionsUserConnectionBlocked';
-  key?: Maybe<Scalars['Boolean']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionConfirmed = {
-  __typename?: 'UsersPermissionsUserConnectionConfirmed';
-  key?: Maybe<Scalars['Boolean']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionCreatedAt = {
-  __typename?: 'UsersPermissionsUserConnectionCreatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionEmail = {
-  __typename?: 'UsersPermissionsUserConnectionEmail';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionId = {
-  __typename?: 'UsersPermissionsUserConnectionId';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionProvider = {
-  __typename?: 'UsersPermissionsUserConnectionProvider';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionRole = {
-  __typename?: 'UsersPermissionsUserConnectionRole';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionSprinter = {
-  __typename?: 'UsersPermissionsUserConnectionSprinter';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionUpdatedAt = {
-  __typename?: 'UsersPermissionsUserConnectionUpdatedAt';
-  key?: Maybe<Scalars['DateTime']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnectionUsername = {
-  __typename?: 'UsersPermissionsUserConnectionUsername';
-  key?: Maybe<Scalars['String']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserConnection_Id = {
-  __typename?: 'UsersPermissionsUserConnection_id';
-  key?: Maybe<Scalars['ID']>;
-  connection?: Maybe<UsersPermissionsUserConnection>;
-};
-
-export type UsersPermissionsUserGroupBy = {
-  __typename?: 'UsersPermissionsUserGroupBy';
-  id?: Maybe<Array<Maybe<UsersPermissionsUserConnectionId>>>;
-  _id?: Maybe<Array<Maybe<UsersPermissionsUserConnection_Id>>>;
-  createdAt?: Maybe<Array<Maybe<UsersPermissionsUserConnectionCreatedAt>>>;
-  updatedAt?: Maybe<Array<Maybe<UsersPermissionsUserConnectionUpdatedAt>>>;
-  username?: Maybe<Array<Maybe<UsersPermissionsUserConnectionUsername>>>;
-  email?: Maybe<Array<Maybe<UsersPermissionsUserConnectionEmail>>>;
-  provider?: Maybe<Array<Maybe<UsersPermissionsUserConnectionProvider>>>;
-  confirmed?: Maybe<Array<Maybe<UsersPermissionsUserConnectionConfirmed>>>;
-  blocked?: Maybe<Array<Maybe<UsersPermissionsUserConnectionBlocked>>>;
-  role?: Maybe<Array<Maybe<UsersPermissionsUserConnectionRole>>>;
-  sprinter?: Maybe<Array<Maybe<UsersPermissionsUserConnectionSprinter>>>;
-};
-
-export type CreateCategoryInput = {
-  data?: Maybe<CategoryInput>;
-};
-
-export type CreateCategoryPayload = {
-  __typename?: 'createCategoryPayload';
-  category?: Maybe<Categories>;
-};
-
-export type CreateDefaultStickyInput = {
-  data?: Maybe<DefaultStickyInput>;
-};
-
-export type CreateDefaultStickyPayload = {
-  __typename?: 'createDefaultStickyPayload';
-  defaultSticky?: Maybe<DefaultStickies>;
-};
-
-export type CreateNextStickyInput = {
-  data?: Maybe<NextStickyInput>;
-};
-
-export type CreateNextStickyPayload = {
-  __typename?: 'createNextStickyPayload';
-  nextSticky?: Maybe<NextStickies>;
-};
-
-export type CreateRoleInput = {
-  data?: Maybe<RoleInput>;
-};
-
-export type CreateRolePayload = {
-  __typename?: 'createRolePayload';
-  role?: Maybe<UsersPermissionsRole>;
-};
-
-export type CreateSprintActivityLogInput = {
-  data?: Maybe<SprintActivityLogInput>;
-};
-
-export type CreateSprintActivityLogPayload = {
-  __typename?: 'createSprintActivityLogPayload';
-  sprintActivityLog?: Maybe<SprintActivityLog>;
-};
-
-export type CreateSprintInput = {
-  data?: Maybe<SprintInput>;
-};
-
-export type CreateSprintPayload = {
-  __typename?: 'createSprintPayload';
-  sprint?: Maybe<Sprints>;
-};
-
-export type CreateSprinterInput = {
-  data?: Maybe<SprinterInput>;
-};
-
-export type CreateSprinterPayload = {
-  __typename?: 'createSprinterPayload';
-  sprinter?: Maybe<Sprinters>;
-};
-
-export type CreateStickyActivityLogInput = {
-  data?: Maybe<StickyActivityLogInput>;
-};
-
-export type CreateStickyActivityLogPayload = {
-  __typename?: 'createStickyActivityLogPayload';
-  stickyActivityLog?: Maybe<StickyActivityLog>;
-};
-
-export type CreateStickyInput = {
-  data?: Maybe<StickyInput>;
-};
-
-export type CreateStickyPayload = {
-  __typename?: 'createStickyPayload';
-  sticky?: Maybe<Stickies>;
-};
-
-export type CreateUserInput = {
-  data?: Maybe<UserInput>;
-};
-
-export type CreateUserPayload = {
-  __typename?: 'createUserPayload';
-  user?: Maybe<UsersPermissionsUser>;
-};
-
-export type DeleteCategoryInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteCategoryPayload = {
-  __typename?: 'deleteCategoryPayload';
-  category?: Maybe<Categories>;
-};
-
-export type DeleteDefaultStickyInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteDefaultStickyPayload = {
-  __typename?: 'deleteDefaultStickyPayload';
-  defaultSticky?: Maybe<DefaultStickies>;
-};
-
-export type DeleteFileInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteFilePayload = {
-  __typename?: 'deleteFilePayload';
-  file?: Maybe<UploadFile>;
-};
-
-export type DeleteNextStickyInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteNextStickyPayload = {
-  __typename?: 'deleteNextStickyPayload';
-  nextSticky?: Maybe<NextStickies>;
-};
-
-export type DeleteRoleInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteRolePayload = {
-  __typename?: 'deleteRolePayload';
-  role?: Maybe<UsersPermissionsRole>;
-};
-
-export type DeleteSprintActivityLogInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteSprintActivityLogPayload = {
-  __typename?: 'deleteSprintActivityLogPayload';
-  sprintActivityLog?: Maybe<SprintActivityLog>;
-};
-
-export type DeleteSprintInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteSprintPayload = {
-  __typename?: 'deleteSprintPayload';
-  sprint?: Maybe<Sprints>;
-};
-
-export type DeleteSprinterInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteSprinterPayload = {
-  __typename?: 'deleteSprinterPayload';
-  sprinter?: Maybe<Sprinters>;
-};
-
-export type DeleteStickyActivityLogInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteStickyActivityLogPayload = {
-  __typename?: 'deleteStickyActivityLogPayload';
-  stickyActivityLog?: Maybe<StickyActivityLog>;
-};
-
-export type DeleteStickyInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteStickyPayload = {
-  __typename?: 'deleteStickyPayload';
-  sticky?: Maybe<Stickies>;
-};
-
-export type DeleteUserInput = {
-  where?: Maybe<InputId>;
-};
-
-export type DeleteUserPayload = {
-  __typename?: 'deleteUserPayload';
-  user?: Maybe<UsersPermissionsUser>;
-};
-
-export type EditCategoryInput = {
-  name?: Maybe<Scalars['String']>;
-  color?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditDefaultStickyInput = {
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  category?: Maybe<Scalars['ID']>;
-  method?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditFileInput = {
-  name?: Maybe<Scalars['String']>;
-  alternativeText?: Maybe<Scalars['String']>;
-  caption?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-  formats?: Maybe<Scalars['JSON']>;
-  hash?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  mime?: Maybe<Scalars['String']>;
-  size?: Maybe<Scalars['Float']>;
-  url?: Maybe<Scalars['String']>;
-  previewUrl?: Maybe<Scalars['String']>;
-  provider?: Maybe<Scalars['String']>;
-  provider_metadata?: Maybe<Scalars['JSON']>;
-  related?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditNextStickyInput = {
-  default_sticky?: Maybe<Scalars['ID']>;
-  sprint?: Maybe<Scalars['ID']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-
-export type EditRoleInput = {
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
-  permissions?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  users?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditSprintActivityLogInput = {
-  sprint?: Maybe<Scalars['ID']>;
-  activity?: Maybe<Enum_Sprintactivitylog_Activity>;
-  detail?: Maybe<Scalars['String']>;
-  sprintno?: Maybe<Scalars['Int']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditSprintInput = {
-  name?: Maybe<Scalars['String']>;
-  sprinters?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  description?: Maybe<Scalars['String']>;
-  facilitators?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditSprinterInput = {
-  lastname?: Maybe<Scalars['String']>;
-  firstname?: Maybe<Scalars['String']>;
-  stickies?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  sprints?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  image?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  displayname?: Maybe<Scalars['String']>;
-  user?: Maybe<Scalars['ID']>;
-  facilitator?: Maybe<Scalars['ID']>;
-  next_stickies?: Maybe<Array<Maybe<Scalars['ID']>>>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditStickyActivityLogInput = {
-  sticky?: Maybe<Scalars['ID']>;
-  activity?: Maybe<Enum_Stickyactivitylog_Activity>;
-  details?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditStickyActivityLogInput = {
-  sticky?: Maybe<Scalars['ID']>;
-  activity?: Maybe<Enum_Stickyactivitylog_Activity>;
-  details?: Maybe<Scalars['String']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditStickyInput = {
-  name?: Maybe<Scalars['String']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  description?: Maybe<Scalars['String']>;
-  points?: Maybe<Scalars['Int']>;
-  status?: Maybe<Enum_Stickies_Status>;
-  order?: Maybe<Scalars['Int']>;
-  icon?: Maybe<Scalars['String']>;
-  method?: Maybe<Scalars['String']>;
-  category?: Maybe<Scalars['ID']>;
-  sprint?: Maybe<Scalars['ID']>;
-  published_at?: Maybe<Scalars['DateTime']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type EditUserInput = {
-  username?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['String']>;
-  provider?: Maybe<Scalars['String']>;
-  password?: Maybe<Scalars['String']>;
-  resetPasswordToken?: Maybe<Scalars['String']>;
-  confirmationToken?: Maybe<Scalars['String']>;
-  confirmed?: Maybe<Scalars['Boolean']>;
-  blocked?: Maybe<Scalars['Boolean']>;
-  role?: Maybe<Scalars['ID']>;
-  sprinter?: Maybe<Scalars['ID']>;
-  created_by?: Maybe<Scalars['ID']>;
-  updated_by?: Maybe<Scalars['ID']>;
-};
-
-export type UpdateCategoryInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditCategoryInput>;
-};
-
-export type UpdateCategoryPayload = {
-  __typename?: 'updateCategoryPayload';
-  category?: Maybe<Categories>;
-};
-
-export type UpdateDefaultStickyInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditDefaultStickyInput>;
-};
-
-export type UpdateDefaultStickyPayload = {
-  __typename?: 'updateDefaultStickyPayload';
-  defaultSticky?: Maybe<DefaultStickies>;
-};
-
-export type UpdateNextStickyInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditNextStickyInput>;
-};
-
-export type UpdateNextStickyPayload = {
-  __typename?: 'updateNextStickyPayload';
-  nextSticky?: Maybe<NextStickies>;
-};
-
-export type UpdateRoleInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditRoleInput>;
-};
-
-export type UpdateRolePayload = {
-  __typename?: 'updateRolePayload';
-  role?: Maybe<UsersPermissionsRole>;
-};
-
-export type UpdateSprintActivityLogInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditSprintActivityLogInput>;
-};
-
-export type UpdateSprintActivityLogPayload = {
-  __typename?: 'updateSprintActivityLogPayload';
-  sprintActivityLog?: Maybe<SprintActivityLog>;
-};
-
-export type UpdateSprintInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditSprintInput>;
-};
-
-export type UpdateSprintPayload = {
-  __typename?: 'updateSprintPayload';
-  sprint?: Maybe<Sprints>;
-};
-
-export type UpdateSprinterInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditSprinterInput>;
-};
-
-export type UpdateSprinterPayload = {
-  __typename?: 'updateSprinterPayload';
-  sprinter?: Maybe<Sprinters>;
-};
-
-export type UpdateStickyActivityLogInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditStickyActivityLogInput>;
-};
-
-export type UpdateStickyActivityLogPayload = {
-  __typename?: 'updateStickyActivityLogPayload';
-  stickyActivityLog?: Maybe<StickyActivityLog>;
-};
-
-export type UpdateStickyInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditStickyInput>;
-};
-
-export type UpdateStickyPayload = {
-  __typename?: 'updateStickyPayload';
-  sticky?: Maybe<Stickies>;
-};
-
-export type UpdateUserInput = {
-  where?: Maybe<InputId>;
-  data?: Maybe<EditUserInput>;
-};
-
-export type UpdateUserPayload = {
-  __typename?: 'updateUserPayload';
-  user?: Maybe<UsersPermissionsUser>;
-};
-
-export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type UsersQuery = (
-  { __typename?: 'Query' }
-  & { users?: Maybe<Array<Maybe<(
-    { __typename?: 'UsersPermissionsUser' }
-    & Pick<UsersPermissionsUser, 'username' | 'email'>
-  )>>> }
-);
 
 export type LoginMutationVariables = Exact<{
   input: UsersPermissionsLoginInput;
 }>;
 
 
-export type LoginMutation = (
-  { __typename?: 'Mutation' }
-  & { login: (
-    { __typename?: 'UsersPermissionsLoginPayload' }
-    & Pick<UsersPermissionsLoginPayload, 'jwt'>
-    & { user: (
-      { __typename?: 'UsersPermissionsMe' }
-      & Pick<UsersPermissionsMe, 'id' | 'email' | 'confirmed' | 'blocked'>
-    ) }
-  ) }
-);
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'UsersPermissionsLoginPayload', jwt?: string | null, user: { __typename?: 'UsersPermissionsMe', id: string, email?: string | null, confirmed?: boolean | null, blocked?: boolean | null } } };
 
-export const UsersDocument = gql`
-    query Users {
-  users {
-    username
-    email
-  }
-}
-    `;
-
-  @Injectable({
-    providedIn: 'root'
-  })
-  export class UsersGQL extends Apollo.Query<UsersQuery, UsersQueryVariables> {
-    document = UsersDocument;
-    
-    constructor(apollo: Apollo.Apollo) {
-      super(apollo);
-    }
-  }
 export const LoginDocument = gql`
     mutation Login($input: UsersPermissionsLoginInput!) {
   login(input: $input) {
@@ -2602,8 +1672,9 @@ export const LoginDocument = gql`
     providedIn: 'root'
   })
   export class LoginGQL extends Apollo.Mutation<LoginMutation, LoginMutationVariables> {
+    // @ts-ignore
     document = LoginDocument;
-    
+
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
     }

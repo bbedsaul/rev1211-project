@@ -22,6 +22,9 @@
       },
       "defaultConfiguration": "production"
     },
+    "generate": {
+      "command": "npx graphql-codegen --config libs/data-access/codegen.yml"
+    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
