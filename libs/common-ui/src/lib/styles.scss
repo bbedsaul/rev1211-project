@@ -19,8 +19,8 @@
 
 @mixin custom-components-theme($theme) {
   @include whirlwindz-styles-reset-theme($theme);
-  @include whirlwindz-app-component-theme($theme);
-  @include whirlwindz-big-input-component-theme($theme);
+  @include rev1211-app-component-theme($theme);
+  @include rev1211-big-input-component-theme($theme);
 }
 
 .default-theme {

@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin whirlwindz-app-component-theme($theme) {
+@mixin rev1211-app-component-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
@@ -69,13 +69,13 @@
   }
 }
 
-@mixin whirlwindz-big-input-component-theme($theme) {
+@mixin rev1211-big-input-component-theme($theme) {
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $foreground: map-get($theme, foreground);
   $background: map-get($theme, background);
 
-  whirlwindz-big-input {
+  rev1211-big-input {
     .big-input {
       input {
         color: mat-color($foreground, text);

@@ -109,7 +109,7 @@ export class AppComponent implements OnInit {
     //this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
     this.stickyHeader$ = of(true); //this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = of('en');
-    this.theme$ = of('primary');
+    this.theme$ = of('black-theme');
   }
 
   onLoginClick() {
