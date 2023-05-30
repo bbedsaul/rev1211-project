@@ -1,0 +1,9 @@
+$whirlwindz-nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$whirlwindz-nature-accent: mat-palette($mat-deep-purple, 300);
+$whirlwindz-nature-warn: mat-palette($mat-red, 600);
+
+$whirlwindz-nature-theme: mat-light-theme(
+  $whirlwindz-nature-primary,
+  $whirlwindz-nature-accent,
+  $whirlwindz-nature-warn
+);
