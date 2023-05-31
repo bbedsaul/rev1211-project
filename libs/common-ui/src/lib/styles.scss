@@ -18,27 +18,27 @@
 //@import './app/shared/big-input/big-input/big-input.component.scss-theme';
 
 @mixin custom-components-theme($theme) {
-  @include whirlwindz-styles-reset-theme($theme);
+  @include rev1211-styles-reset-theme($theme);
   @include rev1211-app-component-theme($theme);
   @include rev1211-big-input-component-theme($theme);
 }
 
 .default-theme {
-  @include angular-material-theme($whirlwindz-theme);
-  @include custom-components-theme($whirlwindz-theme);
+  @include angular-material-theme($rev1211-theme);
+  @include custom-components-theme($rev1211-theme);
 }
 
 .light-theme {
-  @include angular-material-theme($whirlwindz-light-theme);
-  @include custom-components-theme($whirlwindz-light-theme);
+  @include angular-material-theme($rev1211-light-theme);
+  @include custom-components-theme($rev1211-light-theme);
 }
 
 .black-theme {
-  @include angular-material-theme($whirlwindz-black-theme);
-  @include custom-components-theme($whirlwindz-black-theme);
+  @include angular-material-theme($rev1211-black-theme);
+  @include custom-components-theme($rev1211-black-theme);
 }
 
 .nature-theme {
-  @include angular-material-theme($whirlwindz-nature-theme);
-  @include custom-components-theme($whirlwindz-nature-theme);
+  @include angular-material-theme($rev1211-nature-theme);
+  @include custom-components-theme($rev1211-nature-theme);
 }

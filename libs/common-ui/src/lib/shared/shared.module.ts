@@ -82,6 +82,7 @@ import { BigInputActionComponent } from './big-input/big-input-action/big-input-
     BigInputActionComponent,
   ],
   exports: [
+    BigInputComponent,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

@@ -5,16 +5,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'whirlwindz-host-for-test',
+  selector: 'rev1211-host-for-test',
   template: `
-    <whirlwindz-big-input
+    <rev1211-big-input
       placeholder="I am going to do..."
       [value]="newValue"
       (keyup)="onKeyEvent($event)"
       (keyup.enter)="onKeyEvent($event)"
       (keyup.escape)="onKeyEvent($event)"
     >
-    </whirlwindz-big-input>
+    </rev1211-big-input>
   `,
 })
 class HostComponent {

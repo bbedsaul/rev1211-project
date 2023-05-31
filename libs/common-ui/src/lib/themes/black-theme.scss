@@ -1,9 +1,9 @@
-$whirlwindz-black-primary: mat-palette($mat-grey, 700, 300, 900);
-$whirlwindz-black-accent: mat-palette($mat-blue-grey, 400);
-$whirlwindz-black-warn: mat-palette($mat-red, 500);
+$rev1211-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$rev1211-black-accent: mat-palette($mat-blue-grey, 400);
+$rev1211-black-warn: mat-palette($mat-red, 500);
 
-$whirlwindz-black-theme: mat-dark-theme(
-  $whirlwindz-black-primary,
-  $whirlwindz-black-accent,
-  $whirlwindz-black-warn
+$rev1211-black-theme: mat-dark-theme(
+  $rev1211-black-primary,
+  $rev1211-black-accent,
+  $rev1211-black-warn
 );

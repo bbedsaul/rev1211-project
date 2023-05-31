@@ -1,11 +1,11 @@
 const packageJson = require('../../../../package.json');
 
 export const environment = {
-  appName: 'Whirlwindz App',
+  appName: 'rev1211 App',
   envName: 'PROD',
   production: true,
   test: false,
-  i18nPrefix: '/whirlwindz',
+  i18nPrefix: '/rev1211',
   versions: {
     app: packageJson.version,
     angular: packageJson.dependencies['@angular/core'],

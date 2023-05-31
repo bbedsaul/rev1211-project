@@ -72,7 +72,7 @@
             *ngIf="(logged) === false"
             routerLink="login"
           >
-            {{ 'whirlwindz.menu.login' }}
+            Login
           </button>
 
           <button
@@ -83,7 +83,7 @@
           (click)="logout()"
           routerLink="logout"
         >
-          {{ 'whirlwindz.menu.logout' }}
+          Logout
           </button>
 
           <button
@@ -96,7 +96,7 @@
           <mat-menu #toolbarUserMenu="matMenu">
             <button mat-menu-item (click)="onLogoutClick()">
               <mat-icon><fa-icon [icon]="poweroff"></fa-icon></mat-icon>
-              <span>{{ 'whirlwindz.menu.logout' }}</span>
+              <span>Logout</span>
             </button>
           </mat-menu>
 

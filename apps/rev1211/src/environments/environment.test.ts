@@ -1,7 +1,7 @@
 const packageJson = require('../../../../package.json');
 
 export const environment = {
-  appName: 'Whirlwindz App',
+  appName: 'rev1211 App',
   envName: 'TEST',
   production: false,
   test: true,

@@ -42,22 +42,22 @@ export class AppComponent implements OnInit {
   version = env.versions.app;
   year = new Date().getFullYear();
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-//  logoOne = require('../assets/whirlwindz.png').default;
+//  logoOne = require('../assets/rev1211.png').default;
   // eslint-disable-next-line @typescript-eslint/no-var-requires
-//  logoTwo = require('../assets/whirlwindz.png').default;
+//  logoTwo = require('../assets/rev1211.png').default;
   languages = ['en', 'fr', 'es'];
   navigation = [
     {
       link: 'sprint',
-      label: 'whirlwindz.menu.sprint',
+      label: 'rev1211.menu.sprint',
       children: [
-        { link: 'sprint', label: 'whirlwindz.menu.sprint' },
+        { link: 'sprint', label: 'rev1211.menu.sprint' },
       ]
     },
   ];
   navigationSideMenu = [
     ...this.navigation,
-    { link: 'settings', label: 'whirlwindz.menu.settings' },
+    { link: 'settings', label: 'rev1211.menu.settings' },
   ];
 
   stickyHeader$!: Observable<boolean>;
@@ -88,17 +88,6 @@ export class AppComponent implements OnInit {
         this.apollo.client.resetStore();
       }
     }
-
-    /* TODO
-    this.storageService.testLocalStorage();
-    if (AppComponent.isIEorEdgeOrSafari()) {
-      this.store.dispatch(
-        actionSettingsChangeAnimationsPageDisabled({
-          pageAnimationsDisabled: true,
-        })
-      );
-    }
-     */
 
     this.authService.isAuthenticated
     .pipe(distinctUntilChanged()) // Only emit when the current value is different than the last

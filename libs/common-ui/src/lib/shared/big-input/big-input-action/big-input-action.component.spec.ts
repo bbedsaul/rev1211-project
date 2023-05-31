@@ -6,7 +6,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'whirlwindz-host-for-test',
+  selector: 'rev1211-host-for-test',
   template: '',
 })
 class HostComponent {
@@ -41,14 +41,14 @@ describe('BigInputActionComponent', () => {
 
   it('should be created', () => {
     const template =
-      '<whirlwindz-big-input-action></whirlwindz-big-input-action>';
+      '<rev1211-big-input-action></rev1211-big-input-action>';
     fixture = createHostComponent(template);
     expect(component).toBeTruthy();
   });
 
   it('should initially not be disabled and show no icon or label', () => {
     const template =
-      '<whirlwindz-big-input-action></whirlwindz-big-input-action>';
+      '<rev1211-big-input-action></rev1211-big-input-action>';
     fixture = createHostComponent(template);
     expect(getButton().nativeElement.disabled).toBeFalsy();
     expect(getIcon()).toBeNull();
@@ -57,13 +57,13 @@ describe('BigInputActionComponent', () => {
 
   it('should disable button if disabled property is set', () => {
     const template =
-      '<whirlwindz-big-input-action [disabled]="true"></whirlwindz-big-input-action>';
+      '<rev1211-big-input-action [disabled]="true"></rev1211-big-input-action>';
     fixture = createHostComponent(template);
     expect(getButton().nativeElement.disabled).toBeTruthy();
   });
 
   it('should display icon if fontSet and fontIcon properties are set', () => {
-    const template = `<whirlwindz-big-input-action fontSet="fas" fontIcon="fa-trash"></whirlwindz-big-input-action>`;
+    const template = `<rev1211-big-input-action fontSet="fas" fontIcon="fa-trash"></rev1211-big-input-action>`;
     fixture = createHostComponent(template);
     expect(getIcon()).toBeTruthy();
     expect(getIcon().nativeElement.classList.contains('fa-trash')).toBeTruthy();
@@ -71,14 +71,14 @@ describe('BigInputActionComponent', () => {
   });
 
   it('should display label with provided text when label property is set', () => {
-    const template = `<whirlwindz-big-input-action label="delete"></whirlwindz-big-input-action>`;
+    const template = `<rev1211-big-input-action label="delete"></rev1211-big-input-action>`;
     fixture = createHostComponent(template);
     expect(getLabel()).toBeTruthy();
     expect(getLabel().nativeElement.textContent).toBe('delete');
   });
 
   it('should emit action event on button click', () => {
-    const template = `<whirlwindz-big-input-action (action)="actionHandler()"></whirlwindz-big-input-action>`;
+    const template = `<rev1211-big-input-action (action)="actionHandler()"></rev1211-big-input-action>`;
     fixture = createHostComponent(template);
     spyOn(component, 'actionHandler').and.callThrough();
     getButton().triggerEventHandler('click', {});

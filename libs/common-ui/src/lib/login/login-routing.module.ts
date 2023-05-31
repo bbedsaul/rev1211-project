@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: LoginComponent,
-    data: { title: 'whirlwindz.menu.login' },
+    data: { title: 'rev1211.menu.login' },
   },
   {
     path: 'sign-up',

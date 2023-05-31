@@ -1,9 +1,9 @@
-$whirlwindz-light-primary: mat-palette($mat-grey, 200, 500, 300);
-$whirlwindz-light-accent: mat-palette($mat-brown, 200);
-$whirlwindz-light-warn: mat-palette($mat-deep-orange, 200);
+$rev1211-light-primary: mat-palette($mat-grey, 200, 500, 300);
+$rev1211-light-accent: mat-palette($mat-brown, 200);
+$rev1211-light-warn: mat-palette($mat-deep-orange, 200);
 
-$whirlwindz-light-theme: mat-light-theme(
-  $whirlwindz-light-primary,
-  $whirlwindz-light-accent,
-  $whirlwindz-light-warn
+$rev1211-light-theme: mat-light-theme(
+  $rev1211-light-primary,
+  $rev1211-light-accent,
+  $rev1211-light-warn
 );
