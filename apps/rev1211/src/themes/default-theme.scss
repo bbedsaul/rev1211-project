@@ -1,9 +1,17 @@
+@use 'node_modules/@angular/material' as mat;
+@import 'node_modules/@angular/material/theming';
+
 $rev1211-primary: mat-palette($mat-indigo, 800, 300, 900);
 $rev1211-accent: mat-palette($mat-light-blue);
 $rev1211-warn: mat-palette($mat-pink, 600);
 
-$rev1211-theme: mat-light-theme(
-  $rev1211-primary,
-  $rev1211-accent,
-  $rev1211-warn
-);
+$rev1211-theme: mat.define-light-theme((
+  color: (
+    primary: $rev1211-primary,
+    accent: $rev1211-accent,
+    warn: $rev1211-warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+@include mat.all-component-themes($rev1211-theme);

@@ -64,6 +64,7 @@ export class AppComponent implements OnInit {
   language$!: Observable<string>;
   theme$!: Observable<string>;
   logged = false;
+
   tabWasClosed = false;
 
   constructor(

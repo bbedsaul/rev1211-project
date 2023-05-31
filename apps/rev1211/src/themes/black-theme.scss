@@ -1,9 +1,17 @@
+@use 'node_modules/@angular/material' as mat;
+@import 'node_modules/@angular/material/theming';
+
 $rev1211-black-primary: mat-palette($mat-grey, 700, 300, 900);
 $rev1211-black-accent: mat-palette($mat-blue-grey, 400);
 $rev1211-black-warn: mat-palette($mat-red, 500);
 
-$rev1211-black-theme: mat-dark-theme(
-  $rev1211-black-primary,
-  $rev1211-black-accent,
-  $rev1211-black-warn
-);
+$rev1211-black-theme: mat.define-dark-theme((
+  color: (
+    primary: $rev1211-black-primary,
+    accent: $rev1211-black-accent,
+    warn: $rev1211-black-warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+@include mat.all-component-themes($rev1211-black-theme);

@@ -1,9 +1,18 @@
+@use 'node_modules/@angular/material' as mat;
+@import 'node_modules/@angular/material/theming';
+
 $rev1211-nature-primary: mat-palette($mat-brown, 700, 300, 900);
 $rev1211-nature-accent: mat-palette($mat-deep-purple, 300);
 $rev1211-nature-warn: mat-palette($mat-red, 600);
 
-$rev1211-nature-theme: mat-light-theme(
-  $rev1211-nature-primary,
-  $rev1211-nature-accent,
-  $rev1211-nature-warn
-);
+$rev1211-nature-theme: mat.define-light-theme((
+  color: (
+        primary: $rev1211-nature-primary,
+        accent: $rev1211-nature-accent,
+        warn: $rev1211-nature-warn
+    ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($rev1211-nature-theme);

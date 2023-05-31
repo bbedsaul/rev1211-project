@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import 'node_modules/@angular/material/theming';
 
 @mixin rev1211-app-component-theme($theme) {
   $primary: map-get($theme, primary);
@@ -58,6 +58,7 @@
     background-color: mat-color($accent);
   }
 
+  /*
   .success-notification-overlay {
     color: mat-color($success-colors, default-contrast);
     background-color: mat-color($success-colors);
@@ -67,6 +68,7 @@
     color: mat-color($warning-colors, default-contrast);
     background-color: mat-color($warning-colors);
   }
+  */
 }
 
 @mixin rev1211-big-input-component-theme($theme) {

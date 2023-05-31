@@ -1,9 +1,18 @@
+@use 'node_modules/@angular/material' as mat;
+@import 'node_modules/@angular/material/theming';
+
 $rev1211-light-primary: mat-palette($mat-grey, 200, 500, 300);
 $rev1211-light-accent: mat-palette($mat-brown, 200);
 $rev1211-light-warn: mat-palette($mat-deep-orange, 200);
 
-$rev1211-light-theme: mat-light-theme(
-  $rev1211-light-primary,
-  $rev1211-light-accent,
-  $rev1211-light-warn
-);
+$rev1211-light-theme: mat.define-light-theme((
+  color: (
+    primary: $rev1211-light-primary,
+    accent: $rev1211-light-accent,
+    warn: $rev1211-light-warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0,
+));
+
+@include mat.all-component-themes($rev1211-light-theme);
