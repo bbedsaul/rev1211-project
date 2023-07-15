@@ -1,0 +1,9 @@
+<table mat-table [dataSource]="sprints" class="mat-elevation-z8">
+  <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
+    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+    <td mat-cell *matCellDef="let sprint" (click)="openCurrentSprint(sprint)">{{ sprint['attributes'].title }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let sprintrow; columns: displayedColumns"></tr>
+</table>

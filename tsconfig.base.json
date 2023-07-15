@@ -10,12 +10,12 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
+    "strictNullChecks": false,
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rev1211/common-ui": ["libs/common-ui/src/index.ts"],
       "@rev1211/data-access": ["libs/data-access/src/index.ts"],
       "@rev1211/rev1211-core": ["libs/rev1211-core/src/index.ts"]
     }

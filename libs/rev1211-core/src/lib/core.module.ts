@@ -1,8 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf, ErrorHandler } from '@angular/core';
 import {
   HttpClientModule,
-  HttpClient,
   HTTP_INTERCEPTORS,
 } from '@angular/common/http';
 // eslint-disable-next-line @nx/enforce-module-boundaries
@@ -26,6 +24,16 @@ import { LocalStorageService } from './local-storage/local-storage.service';
 import { HttpErrorInterceptor } from './http-interceptors/http-error.interceptor';
 import { NotificationService } from './notifications/notification.service';
 import { MatButtonModule } from '@angular/material/button';
+import {MatCardModule} from "@angular/material/card";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatSortModule} from "@angular/material/sort";
+import {MatInputModule} from "@angular/material/input";
+import {MatRadioModule} from "@angular/material/radio";
 
 export {
   routeAnimations,
@@ -38,11 +46,11 @@ export {
 @NgModule({
   imports: [
     // angular
-    CommonModule,
     HttpClientModule,
     FormsModule,
 
     // material
+    MatCardModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
@@ -52,6 +60,17 @@ export {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatRadioModule,
+    MatDatepickerModule,
   ],
   declarations: [],
   providers: [
@@ -63,6 +82,7 @@ export {
     FormsModule,
 
     // material
+    MatCardModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
@@ -72,6 +92,17 @@ export {
     MatTooltipModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatDialogModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatRadioModule,
+    MatDatepickerModule,
 
   ],
 })

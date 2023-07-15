@@ -1,14 +1,18 @@
-import { Sprinter } from "./sprinter";
+import { Sprint } from "./sprint";
+import { User } from "./user";
 
-export interface UserProfile {
+export interface Userprofile {
   id: string;
-  displayName?: string;
-  username?: string;
-  photoUrl?: string,
   email?: string;
-  confirmed: boolean,
-  blocked: boolean,
-  sprinter: Sprinter,
+  displayName?: string;
+  fname?: string;
+  lname?: string;
+  phone?: string;
+  photoUrl?: string,
+  facilitated: Sprint[],
+  sprints: Sprint[],
+  sponsors: Sprint[],
+  user: User,
   updatedAt?: number;
   createdAt?: number;
 }

@@ -14,4 +14,4 @@ $rev1211-black-theme: mat.define-dark-theme((
   typography: mat.define-typography-config(),
   density: 0,
 ));
-@include mat.all-component-themes($rev1211-black-theme);
+//@include mat.all-component-themes($rev1211-black-theme);

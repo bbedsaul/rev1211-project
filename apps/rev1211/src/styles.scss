@@ -2,7 +2,7 @@
 @import 'styles-variables';
 
 @import 'styles-reset';
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 @include mat.core();
 
@@ -38,4 +38,10 @@
 .nature-theme {
   @include angular-material-theme($rev1211-nature-theme);
   @include custom-components-theme($rev1211-nature-theme);
+}
+
+.main-heading {
+  text-transform: uppercase;
+  justify-content: center;
+  text-align: center;
 }

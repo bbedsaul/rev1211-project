@@ -14,7 +14,352 @@ export const LOGIN_MUTATION = gql`
   }
 `;
 
-export const ALL_USERS = gql`
+/*
+export const USER_PROFILE = gql`
+  query UserProfiles($input: UserProfileFiltersInput) {
+    userProfiles(filters:$input) {
+      data {
+        attributes {
+          email
+          updatedAt
+          createdAt
+          facilitated {
+            data {
+              attributes {
+                title
+                description
+                start_date
+                end_date
+                module {
+                  data {
+                    attributes {
+                      title
+                      name
+                      days
+                      module_days {
+                        data {
+                          attributes {
+                            name
+                            description
+                            stickies {
+                              data {
+                                attributes {
+                                  name
+                                  url
+                                  media {
+                                    data {
+                                      attributes {
+                                        name
+                                        alternativeText
+                                      }
+                                    }
+                                  }
+                                  type
+                                  completed
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          sprints {
+            data {
+              attributes {
+                description
+              }
+            }
+          }
+          users_permissions_user {
+            data {
+              id
+              attributes {
+                email
+                provider
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `;
+ */
+
+export const USER_PROFILE = gql`
+  query UserProfiles($input: UserProfileFiltersInput) {
+    userProfiles(filters:$input) {
+      data {
+        id
+        attributes {
+          email
+          firstname
+          lastname
+          updatedAt
+          createdAt
+          facilitated {
+            data {
+              id
+              attributes {
+                title
+                description
+                start_date
+                end_date
+                module {
+                  data {
+                    id
+                    attributes {
+                      title
+                      name
+                      days
+                      module_days {
+                        data {
+                          id
+                          attributes {
+                            name
+                            description
+                            stickies {
+                              data {
+                                id
+                                attributes {
+                                  name
+                                  url
+                                  media {
+                                    data {
+                                      id
+                                      attributes {
+                                        name
+                                        alternativeText
+                                      }
+                                    }
+                                  }
+                                  type
+                                  completed
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                sprinters {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                facilitators {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                sponsors {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+              }
+            }
+          }
+          sprints {
+            data {
+              id
+              attributes {
+                title
+                description
+                start_date
+                end_date
+                module {
+                  data {
+                    id
+                    attributes {
+                      title
+                      name
+                      days
+                      module_days {
+                        data {
+                          id
+                          attributes {
+                            name
+                            description
+                            stickies {
+                              data {
+                                id
+                                attributes {
+                                  name
+                                  url
+                                  media {
+                                    data {
+                                      id
+                                      attributes {
+                                        name
+                                        alternativeText
+                                      }
+                                    }
+                                  }
+                                  type
+                                  completed
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                sprinters {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                facilitators {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                sponsors {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+              }
+            }
+          }
+          sponsors {
+            data {
+              id
+              attributes {
+                title
+                description
+                start_date
+                end_date
+                module {
+                  data {
+                    id
+                    attributes {
+                      title
+                      name
+                      days
+                      module_days {
+                        data {
+                          id
+                          attributes {
+                            name
+                            description
+                            stickies {
+                              data {
+                                id
+                                attributes {
+                                  name
+                                  url
+                                  media {
+                                    data {
+                                      id
+                                      attributes {
+                                        name
+                                        alternativeText
+                                      }
+                                    }
+                                  }
+                                  type
+                                  completed
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                sprinters {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                facilitators {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+                sponsors {
+                  data {
+                    id
+                    attributes {
+                      firstname
+                      lastname
+                      email
+                    }
+                  }
+                }
+              }
+            }
+          }
+          users_permissions_user {
+            data {
+              id
+              attributes {
+                email
+                provider
+                username
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+  export const ALL_USERS = gql`
   query Users {
     users {
       username

@@ -1,23 +1,17 @@
+@use 'node_modules/@angular/material' as mat;
+@import 'node_modules/@angular/material/theming';
+
 $toolbar-breakpoint: 600px;
 
 $fa-font-path: '~@fortawesome/fontawesome-free-webfonts/webfonts';
 
 $link-hover-decoration: none;
 $label-margin-bottom: 0;
-$theme: 'deeppurple-amber';
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-);
+$theme: 'light-theme';
 
-//$success-colors: mat-palette($mat-green, 400);
-//$warning-colors: mat-palette($mat-amber, 400);
-//$success-colors: mat-palette(green, 400);
-//$warning-colors: mat-palette(red, 400);
+$success-colors: mat-palette($mat-green, 400);
+$warning-colors: mat-palette($mat-amber, 400);
 
 $attend-color: #ffd966;
 $collab-color: #fbfbb5;

@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 import { environment as env } from '../environments/environment';
-import { AuthService } from '@rev1211/data-access';
-import { AUTH_TOKEN } from "@rev1211/data-access";
-
+import { AuthService } from './services/auth.service';
+import { AUTH_TOKEN } from './constants';
 import {
   routeAnimations,
   LocalStorageService,
@@ -49,20 +48,23 @@ export class AppComponent implements OnInit {
   navigation = [
     {
       link: 'sprint',
-      label: 'rev1211.menu.sprint',
+      label: 'Sprints',
       children: [
-        { link: 'sprint', label: 'rev1211.menu.sprint' },
+        { link: 'sprint', label: 'My Sprints' },
+        { link: 'sprintdetail', label: 'New Sprint' },
+        { link: 'module', label: 'New Module' },
       ]
     },
   ];
   navigationSideMenu = [
-    ...this.navigation,
-    { link: 'settings', label: 'rev1211.menu.settings' },
+    { link: 'sprint', label: 'My Sprints' },
+    { link: 'sprintdetail', label: 'New Sprint' },
+    { link: 'module', label: 'New Module' },
   ];
 
   stickyHeader$!: Observable<boolean>;
   language$!: Observable<string>;
-  theme$!: Observable<string>;
+  theme$!: Observable<any>;
   logged = false;
 
   tabWasClosed = false;
@@ -94,12 +96,14 @@ export class AppComponent implements OnInit {
     .pipe(distinctUntilChanged()) // Only emit when the current value is different than the last
     .subscribe(isAuthenticated => {
       this.logged = isAuthenticated
+      if(isAuthenticated)
+        this.router.navigate(['/sprint']);
     });
 
     //this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
     this.stickyHeader$ = of(true); //this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = of('en');
-    this.theme$ = of('deeppurple-amber' );
+    this.theme$ = of('BLACK-THEME');
   }
 
   onLoginClick() {

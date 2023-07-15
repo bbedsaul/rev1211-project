@@ -1,0 +1,63 @@
+<div class="container" rtl>
+  <mat-card>
+    <mat-card-header class="main-heading">
+      <mat-card-title> Login </mat-card-title>
+    </mat-card-header>
+    <ng-container *ngIf="formValueChanges$ | async as updatedForm">
+      {{ update(updatedForm) }}
+    </ng-container>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <mat-card>
+            <div class="row">
+              <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+                <input
+                  matInput
+                  placeholder="Username"
+                  formControlName="username"
+                />
+                <mat-error *ngIf="form.get('username')?.invalid">
+                  Login is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col" [ngClass]="routeAnimationsElements">
+                <input
+                  matInput
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                />
+                <mat-error *ngIf="form.get('password')?.invalid">
+                  Password is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+            </div>
+            <div class="row buttons d-flex justify-content-between pad">
+              <button
+                mat-raised-button
+                color="primary"
+                [ngClass]="routeAnimationsElements"
+              >
+                Send
+              </button>
+              <button
+                mat-button
+                mat-stroked-button
+                color="accent"
+                (click)="forgotPassword()"
+                [ngClass]="routeAnimationsElements"
+              >
+                Reset Password
+              </button>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+    </form>
+  </mat-card>
+  </div>

@@ -1,11 +1,12 @@
-import { Sticky } from "./sticky";
+import { ModuleDay } from "./moduleday";
 
 export interface Module {
   id: string,
   name: string,
+  title: string,
   description: string,
-  moduleNo: number,
-  status?: string,
-  stickies?: Sticky[],
+  days: number,
+  moduleDays: ModuleDay[],
+  completed?: boolean,
   updatedAt?: number
 }

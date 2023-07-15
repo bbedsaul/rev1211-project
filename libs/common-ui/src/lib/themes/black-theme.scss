@@ -1,9 +1,0 @@
-$rev1211-black-primary: mat-palette($mat-grey, 700, 300, 900);
-$rev1211-black-accent: mat-palette($mat-blue-grey, 400);
-$rev1211-black-warn: mat-palette($mat-red, 500);
-
-$rev1211-black-theme: mat-dark-theme(
-  $rev1211-black-primary,
-  $rev1211-black-accent,
-  $rev1211-black-warn
-);

@@ -8,10 +8,7 @@ export interface Sticky {
   description: string,
   points: number,
   order: number,
-  status?: string,
-  icon: string,
-  method: string,
-  category: Category,
-  sprint: Sprint,
-  sprinter: Sprinter,
+  url: string,
+  type: string,
+  completed: boolean,
 }

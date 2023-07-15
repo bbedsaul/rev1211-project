@@ -1,6 +1,6 @@
 import {Sticky} from "./sticky";
 import {Sprint} from "./sprint";
-import { UserProfile } from "./userprofile";
+import { Userprofile } from "./userprofile";
 
 export interface Sprinter {
   id: string | '',
@@ -13,5 +13,5 @@ export interface Sprinter {
   doing:Sticky[],
   completed:Sticky[],
   next_stickies: Sticky[],
-  user: UserProfile,
+  user: Userprofile,
 }

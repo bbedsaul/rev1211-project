@@ -1,0 +1,169 @@
+<mat-accordion>
+  <mat-card>
+    <mat-card-header class="main-heading">
+      <mat-card-title> {{title}} </mat-card-title>
+    </mat-card-header>
+  <mat-expansion-panel [expanded]="true" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-card-header>
+          <mat-card-title>Details</mat-card-title>
+        </mat-card-header>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <form [formGroup]="sprintForm" novalidate (ngSubmit)="onSubmit()">
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Title</mat-label>
+                <input [readonly]="editMode" matInput placeholder="Title" formControlName="title" />
+                <mat-error *ngIf="sprintForm.controls['title'].hasError('required')">
+                  Title is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <input [readonly]="editMode" matInput placeholder="Description" formControlName="description">
+                <mat-error *ngIf="sprintForm.controls['description'].hasError('required')">
+                  Description is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-label>Module Name</mat-label>
+                <input [readonly]="editMode" (click)="openDialog()" matInput placeholder=" Module Name " formControlName="modulename">
+                <mat-error *ngIf="sprintForm.controls['modulename'].hasError('required')">
+                  Module is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-label>Start Date</mat-label>
+                <input [readonly]="editMode" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate"
+                       placeholder="Start Date" formControlName="start">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="sprintForm.controls['start'].hasError('required')">
+                  Start Date is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col">
+              <mat-form-field>
+                <mat-label>End Date</mat-label>
+                <input [disabled]="true" [readonly]="editMode" matInput [matDatepicker]="picker2" [min]="minDate" [max]="maxDate"
+                       placeholder="End Date" formControlName="end">
+                <mat-datepicker-toggle [disabled]="editMode" matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+                <mat-error *ngIf="sprintForm.controls['end'].hasError('required')">
+                  End Date is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field>
+                <mat-label>Type</mat-label>
+                <input [readonly]="editMode" (click)="openDialog()" matInput placeholder="Type 2" formControlName="description">
+
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-select [disabled]="editMode" placeholder="Type" formControlName="type">
+                  <mat-option *ngFor="let type of types" [value]="type.value">
+                    {{type.viewValue}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="sprintForm.controls['type'].hasError('required')">
+                  Type is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </mat-card-actions>
+    </form>
+  </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="false" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-card-header>
+            <mat-card-title> Sprinters </mat-card-title>
+          </mat-card-header>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <mat-card-content>
+          <table mat-table [dataSource]="sprinters" class="mat-elevation-z8">
+            <ng-container [matColumnDef]="column" *ngFor="let column of sprinterColumns">
+              <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+              <td mat-cell *matCellDef="let sprinter">{{ sprinter.attributes[column] }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="sprinterColumns"></tr>
+            <tr mat-row *matRowDef="let sprinterrow; columns: sprinterColumns"></tr>`
+          </table>
+        </mat-card-content>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="false" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-card-header>
+            <mat-card-title> Facilitators </mat-card-title>
+          </mat-card-header>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <mat-card-content>
+          <table mat-table [dataSource]="facilitators" class="mat-elevation-z8">
+            <ng-container [matColumnDef]="column" *ngFor="let column of facilitatorColumns">
+              <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+              <td mat-cell *matCellDef="let facilitator">{{ facilitator.attributes[column] }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="facilitatorColumns"></tr>
+            <tr mat-row *matRowDef="let facilitatorrow; columns: facilitatorColumns"></tr>`
+          </table>
+        </mat-card-content>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="false" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-card-header>
+            <mat-card-title> Sponsors </mat-card-title>
+          </mat-card-header>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+        <mat-card-content>
+          <table mat-table [dataSource]="sponsors" class="mat-elevation-z8">
+            <ng-container [matColumnDef]="column" *ngFor="let column of sponsorColumns">
+              <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+              <td mat-cell *matCellDef="let sponsor">{{ sponsor.attributes[column] }}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="sponsorColumns"></tr>
+            <tr mat-row *matRowDef="let sponsorrow; columns: sponsorColumns"></tr>`
+          </table>
+        </mat-card-content>
+    </mat-expansion-panel>
+    <mat-expansion-panel [expanded]="false" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-card-header>
+            <mat-card-title> Sprint Days </mat-card-title>
+          </mat-card-header>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-card>
+</mat-accordion>
+

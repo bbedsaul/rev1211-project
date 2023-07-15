@@ -1,9 +1,0 @@
-$rev1211-nature-primary: mat-palette($mat-brown, 700, 300, 900);
-$rev1211-nature-accent: mat-palette($mat-deep-purple, 300);
-$rev1211-nature-warn: mat-palette($mat-red, 600);
-
-$rev1211-nature-theme: mat-light-theme(
-  $rev1211-nature-primary,
-  $rev1211-nature-accent,
-  $rev1211-nature-warn
-);

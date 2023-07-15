@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+mat-card-header {
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
 mat-sidenav-container {
   height: 100%;
   width: 100%;
@@ -54,13 +60,6 @@ mat-sidenav-container {
       width: 40px;
       font-size: 14px;
     }
-
-    @media (max-width: map-get($grid-breakpoints, lg)) {
-      .nav-button {
-        min-width: 0;
-        padding: 0 10px;
-      }
-    }
   }
 
   .wrapper {
@@ -84,8 +83,6 @@ mat-sidenav-container {
       text-align: center;
 
       .row {
-//        padding: 10px 0;
-
         .links {
           a {
             transition: padding 0.5s;
@@ -109,40 +106,6 @@ mat-sidenav-container {
               text-align: left;
               white-space: nowrap;
               transition: width 0.5s;
-            }
-          }
-
-          @media (min-width: map-get($grid-breakpoints, lg)) {
-            a {
-              padding: 20px 10px;
-            }
-          }
-
-          @media (max-width: map-get($grid-breakpoints, md)) {
-            a {
-              padding: 20px;
-
-              span {
-                width: 0;
-                padding: 0;
-              }
-            }
-          }
-
-          @media (max-width: map-get($grid-breakpoints, sm)) {
-            a {
-              padding: 20px 5px;
-            }
-          }
-        }
-
-        @media (min-width: map-get($grid-breakpoints, sm)) {
-          .signature {
-            position: relative;
-
-            a {
-              position: absolute;
-              right: 15px;
             }
           }
         }

@@ -218,264 +218,6 @@ input JSONFilterInput {
   between: [JSON]
 }
 
-enum ENUM_MODULE_TYPE {
-  starter
-  second
-}
-
-input ModuleFiltersInput {
-  id: IDFilterInput
-  description: StringFilterInput
-  type: StringFilterInput
-  sprints: SprintFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [ModuleFiltersInput]
-  or: [ModuleFiltersInput]
-  not: ModuleFiltersInput
-}
-
-input ModuleInput {
-  description: String
-  type: ENUM_MODULE_TYPE
-  sprints: [ID]
-  publishedAt: DateTime
-}
-
-type Module {
-  description: String
-  type: ENUM_MODULE_TYPE!
-  sprints(
-    filters: SprintFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SprintRelationResponseCollection
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type ModuleEntity {
-  id: ID
-  attributes: Module
-}
-
-type ModuleEntityResponse {
-  data: ModuleEntity
-}
-
-type ModuleEntityResponseCollection {
-  data: [ModuleEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-enum ENUM_SPRINT_TYPE {
-  starter
-  second
-}
-
-input SprintFiltersInput {
-  id: IDFilterInput
-  description: StringFilterInput
-  facilitator: UsersPermissionsUserFiltersInput
-  sprinters: UsersPermissionsUserFiltersInput
-  start_date: DateTimeFilterInput
-  end_date: DateTimeFilterInput
-  title: StringFilterInput
-  type: StringFilterInput
-  location: StringFilterInput
-  sponsor: UsersPermissionsUserFiltersInput
-  module: ModuleFiltersInput
-  sprint_days: SprintDayFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [SprintFiltersInput]
-  or: [SprintFiltersInput]
-  not: SprintFiltersInput
-}
-
-input SprintInput {
-  description: String
-  facilitator: ID
-  sprinters: [ID]
-  start_date: DateTime
-  end_date: DateTime
-  title: String
-  type: ENUM_SPRINT_TYPE
-  location: String
-  sponsor: ID
-  module: ID
-  sprint_days: ID
-  publishedAt: DateTime
-}
-
-type Sprint {
-  description: String
-  facilitator: UsersPermissionsUserEntityResponse
-  sprinters(
-    filters: UsersPermissionsUserFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-  ): UsersPermissionsUserRelationResponseCollection
-  start_date: DateTime
-  end_date: DateTime
-  title: String
-  type: ENUM_SPRINT_TYPE
-  location: String
-  sponsor: UsersPermissionsUserEntityResponse
-  module: ModuleEntityResponse
-  sprint_days: SprintDayEntityResponse
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type SprintEntity {
-  id: ID
-  attributes: Sprint
-}
-
-type SprintEntityResponse {
-  data: SprintEntity
-}
-
-type SprintEntityResponseCollection {
-  data: [SprintEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-type SprintRelationResponseCollection {
-  data: [SprintEntity!]!
-}
-
-input SprintDayFiltersInput {
-  id: IDFilterInput
-  name: StringFilterInput
-  description: StringFilterInput
-  order: IntFilterInput
-  start_date_time: DateTimeFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [SprintDayFiltersInput]
-  or: [SprintDayFiltersInput]
-  not: SprintDayFiltersInput
-}
-
-input SprintDayInput {
-  name: String
-  description: String
-  order: Int
-  start_date_time: DateTime
-  publishedAt: DateTime
-}
-
-type SprintDay {
-  name: String
-  description: String
-  order: Int
-  start_date_time: DateTime
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type SprintDayEntity {
-  id: ID
-  attributes: SprintDay
-}
-
-type SprintDayEntityResponse {
-  data: SprintDayEntity
-}
-
-type SprintDayEntityResponseCollection {
-  data: [SprintDayEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input StickyFiltersInput {
-  id: IDFilterInput
-  description: StringFilterInput
-  completed: BooleanFilterInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [StickyFiltersInput]
-  or: [StickyFiltersInput]
-  not: StickyFiltersInput
-}
-
-input StickyInput {
-  description: String
-  media: ID
-  completed: Boolean
-  publishedAt: DateTime
-}
-
-type Sticky {
-  description: String
-  media: UploadFileEntityResponse
-  completed: Boolean
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type StickyEntity {
-  id: ID
-  attributes: Sticky
-}
-
-type StickyEntityResponse {
-  data: StickyEntity
-}
-
-type StickyEntityResponseCollection {
-  data: [StickyEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input UserProfileFiltersInput {
-  id: IDFilterInput
-  user: UsersPermissionsUserFiltersInput
-  createdAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-  publishedAt: DateTimeFilterInput
-  and: [UserProfileFiltersInput]
-  or: [UserProfileFiltersInput]
-  not: UserProfileFiltersInput
-}
-
-input UserProfileInput {
-  user: ID
-  publishedAt: DateTime
-}
-
-type UserProfile {
-  user: UsersPermissionsUserEntityResponse
-  createdAt: DateTime
-  updatedAt: DateTime
-  publishedAt: DateTime
-}
-
-type UserProfileEntity {
-  id: ID
-  attributes: UserProfile
-}
-
-type UserProfileEntityResponse {
-  data: UserProfileEntity
-}
-
-type UserProfileEntityResponseCollection {
-  data: [UserProfileEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
 input UploadFileFiltersInput {
   id: IDFilterInput
   name: StringFilterInput
@@ -744,7 +486,6 @@ input UsersPermissionsUserFiltersInput {
   blocked: BooleanFilterInput
   role: UsersPermissionsRoleFiltersInput
   user_profile: UserProfileFiltersInput
-  sprints: SprintFiltersInput
   createdAt: DateTimeFilterInput
   updatedAt: DateTimeFilterInput
   and: [UsersPermissionsUserFiltersInput]
@@ -763,7 +504,6 @@ input UsersPermissionsUserInput {
   blocked: Boolean
   role: ID
   user_profile: ID
-  sprints: [ID]
 }
 
 type UsersPermissionsUser {
@@ -774,12 +514,6 @@ type UsersPermissionsUser {
   blocked: Boolean
   role: UsersPermissionsRoleEntityResponse
   user_profile: UserProfileEntityResponse
-  sprints(
-    filters: SprintFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SprintRelationResponseCollection
   createdAt: DateTime
   updatedAt: DateTime
 }
@@ -956,13 +690,551 @@ type EzformsRecipientEntityResponseCollection {
   meta: ResponseCollectionMeta!
 }
 
+input BadgeFiltersInput {
+  id: IDFilterInput
+  description: StringFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [BadgeFiltersInput]
+  or: [BadgeFiltersInput]
+  not: BadgeFiltersInput
+}
+
+input BadgeInput {
+  badge_image: [ID]
+  description: String
+  name: String
+  publishedAt: DateTime
+}
+
+type Badge {
+  badge_image(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
+  description: String
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type BadgeEntity {
+  id: ID
+  attributes: Badge
+}
+
+type BadgeEntityResponse {
+  data: BadgeEntity
+}
+
+type BadgeEntityResponseCollection {
+  data: [BadgeEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input DayFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  description: StringFilterInput
+  stickies: StickyFiltersInput
+  order: IntFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [DayFiltersInput]
+  or: [DayFiltersInput]
+  not: DayFiltersInput
+}
+
+input DayInput {
+  name: String
+  description: String
+  stickies: [ID]
+  order: Int
+  publishedAt: DateTime
+}
+
+type Day {
+  name: String
+  description: String
+  stickies(
+    filters: StickyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): StickyRelationResponseCollection
+  order: Int
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type DayEntity {
+  id: ID
+  attributes: Day
+}
+
+type DayEntityResponse {
+  data: DayEntity
+}
+
+type DayEntityResponseCollection {
+  data: [DayEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type DayRelationResponseCollection {
+  data: [DayEntity!]!
+}
+
+input ModuleFiltersInput {
+  id: IDFilterInput
+  description: StringFilterInput
+  days: IntFilterInput
+  badge: BadgeFiltersInput
+  module_days: DayFiltersInput
+  title: StringFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [ModuleFiltersInput]
+  or: [ModuleFiltersInput]
+  not: ModuleFiltersInput
+}
+
+input ModuleInput {
+  description: String
+  days: Int
+  badge: ID
+  module_days: [ID]
+  title: String
+  name: String
+  publishedAt: DateTime
+}
+
+type Module {
+  description: String
+  days: Int
+  badge: BadgeEntityResponse
+  module_days(
+    filters: DayFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): DayRelationResponseCollection
+  title: String
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type ModuleEntity {
+  id: ID
+  attributes: Module
+}
+
+type ModuleEntityResponse {
+  data: ModuleEntity
+}
+
+type ModuleEntityResponseCollection {
+  data: [ModuleEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+enum ENUM_REV1211ROLE_ROLE {
+  Facilitator
+  Sprinter
+  Sponsor
+}
+
+input Rev1211RoleFiltersInput {
+  id: IDFilterInput
+  role: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [Rev1211RoleFiltersInput]
+  or: [Rev1211RoleFiltersInput]
+  not: Rev1211RoleFiltersInput
+}
+
+input Rev1211RoleInput {
+  role: ENUM_REV1211ROLE_ROLE
+  publishedAt: DateTime
+}
+
+type Rev1211Role {
+  role: ENUM_REV1211ROLE_ROLE!
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type Rev1211RoleEntity {
+  id: ID
+  attributes: Rev1211Role
+}
+
+type Rev1211RoleEntityResponse {
+  data: Rev1211RoleEntity
+}
+
+type Rev1211RoleEntityResponseCollection {
+  data: [Rev1211RoleEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type Rev1211RoleRelationResponseCollection {
+  data: [Rev1211RoleEntity!]!
+}
+
+enum ENUM_SPRINT_TYPE {
+  starter
+  second
+}
+
+input SprintFiltersInput {
+  id: IDFilterInput
+  description: StringFilterInput
+  start_date: DateTimeFilterInput
+  end_date: DateTimeFilterInput
+  title: StringFilterInput
+  type: StringFilterInput
+  location: StringFilterInput
+  sprint_days: SprintDayFiltersInput
+  sprinters: UserProfileFiltersInput
+  facilitators: UserProfileFiltersInput
+  module: ModuleFiltersInput
+  sponsors: UserProfileFiltersInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [SprintFiltersInput]
+  or: [SprintFiltersInput]
+  not: SprintFiltersInput
+}
+
+input SprintInput {
+  description: String
+  start_date: DateTime
+  end_date: DateTime
+  title: String
+  type: ENUM_SPRINT_TYPE
+  location: String
+  sprint_days: [ID]
+  sprinters: [ID]
+  facilitators: [ID]
+  module: ID
+  sponsors: [ID]
+  name: String
+  publishedAt: DateTime
+}
+
+type Sprint {
+  description: String
+  start_date: DateTime
+  end_date: DateTime
+  title: String
+  type: ENUM_SPRINT_TYPE
+  location: String
+  sprint_days(
+    filters: SprintDayFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintDayRelationResponseCollection
+  sprinters(
+    filters: UserProfileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): UserProfileRelationResponseCollection
+  facilitators(
+    filters: UserProfileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): UserProfileRelationResponseCollection
+  module: ModuleEntityResponse
+  sponsors(
+    filters: UserProfileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): UserProfileRelationResponseCollection
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type SprintEntity {
+  id: ID
+  attributes: Sprint
+}
+
+type SprintEntityResponse {
+  data: SprintEntity
+}
+
+type SprintEntityResponseCollection {
+  data: [SprintEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type SprintRelationResponseCollection {
+  data: [SprintEntity!]!
+}
+
+input SprintDayFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  description: StringFilterInput
+  start_date_time: DateTimeFilterInput
+  module_day: DayFiltersInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [SprintDayFiltersInput]
+  or: [SprintDayFiltersInput]
+  not: SprintDayFiltersInput
+}
+
+input SprintDayInput {
+  name: String
+  description: String
+  start_date_time: DateTime
+  module_day: ID
+  publishedAt: DateTime
+}
+
+type SprintDay {
+  name: String
+  description: String
+  start_date_time: DateTime
+  module_day: DayEntityResponse
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type SprintDayEntity {
+  id: ID
+  attributes: SprintDay
+}
+
+type SprintDayEntityResponse {
+  data: SprintDayEntity
+}
+
+type SprintDayEntityResponseCollection {
+  data: [SprintDayEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type SprintDayRelationResponseCollection {
+  data: [SprintDayEntity!]!
+}
+
+enum ENUM_STICKY_TYPE {
+  video
+  form
+  document
+}
+
+input StickyFiltersInput {
+  id: IDFilterInput
+  description: StringFilterInput
+  completed: BooleanFilterInput
+  type: StringFilterInput
+  url: StringFilterInput
+  name: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [StickyFiltersInput]
+  or: [StickyFiltersInput]
+  not: StickyFiltersInput
+}
+
+input StickyInput {
+  description: String
+  media: ID
+  completed: Boolean
+  type: ENUM_STICKY_TYPE
+  url: String
+  name: String
+  publishedAt: DateTime
+}
+
+type Sticky {
+  description: String
+  media: UploadFileEntityResponse
+  completed: Boolean!
+  type: ENUM_STICKY_TYPE!
+  url: String
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type StickyEntity {
+  id: ID
+  attributes: Sticky
+}
+
+type StickyEntityResponse {
+  data: StickyEntity
+}
+
+type StickyEntityResponseCollection {
+  data: [StickyEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type StickyRelationResponseCollection {
+  data: [StickyEntity!]!
+}
+
+input TimeZoneFiltersInput {
+  id: IDFilterInput
+  name: StringFilterInput
+  description: StringFilterInput
+  location: StringFilterInput
+  offset: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [TimeZoneFiltersInput]
+  or: [TimeZoneFiltersInput]
+  not: TimeZoneFiltersInput
+}
+
+input TimeZoneInput {
+  name: String
+  description: String
+  location: String
+  offset: String
+  publishedAt: DateTime
+}
+
+type TimeZone {
+  name: String
+  description: String
+  location: String
+  offset: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type TimeZoneEntity {
+  id: ID
+  attributes: TimeZone
+}
+
+type TimeZoneEntityResponse {
+  data: TimeZoneEntity
+}
+
+type TimeZoneEntityResponseCollection {
+  data: [TimeZoneEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input UserProfileFiltersInput {
+  id: IDFilterInput
+  email: StringFilterInput
+  sprints: SprintFiltersInput
+  facilitated: SprintFiltersInput
+  rev_1211_roles: Rev1211RoleFiltersInput
+  users_permissions_user: UsersPermissionsUserFiltersInput
+  sponsors: SprintFiltersInput
+  firstname: StringFilterInput
+  lastname: StringFilterInput
+  createdAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+  publishedAt: DateTimeFilterInput
+  and: [UserProfileFiltersInput]
+  or: [UserProfileFiltersInput]
+  not: UserProfileFiltersInput
+}
+
+input UserProfileInput {
+  email: String
+  sprints: [ID]
+  facilitated: [ID]
+  rev_1211_roles: [ID]
+  users_permissions_user: ID
+  sponsors: [ID]
+  firstname: String
+  lastname: String
+  publishedAt: DateTime
+}
+
+type UserProfile {
+  email: String!
+  sprints(
+    filters: SprintFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintRelationResponseCollection
+  facilitated(
+    filters: SprintFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintRelationResponseCollection
+  rev_1211_roles(
+    filters: Rev1211RoleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Rev1211RoleRelationResponseCollection
+  users_permissions_user: UsersPermissionsUserEntityResponse
+  sponsors(
+    filters: SprintFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintRelationResponseCollection
+  firstname: String
+  lastname: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  publishedAt: DateTime
+}
+
+type UserProfileEntity {
+  id: ID
+  attributes: UserProfile
+}
+
+type UserProfileEntityResponse {
+  data: UserProfileEntity
+}
+
+type UserProfileEntityResponseCollection {
+  data: [UserProfileEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+type UserProfileRelationResponseCollection {
+  data: [UserProfileEntity!]!
+}
+
 union GenericMorph =
-    Module
-  | Sprint
-  | SprintDay
-  | Sticky
-  | UserProfile
-  | UploadFile
+    UploadFile
   | UploadFolder
   | I18NLocale
   | UsersPermissionsPermission
@@ -972,6 +1244,15 @@ union GenericMorph =
   | CustomLinksTempuri
   | EzformsSubmission
   | EzformsRecipient
+  | Badge
+  | Day
+  | Module
+  | Rev1211Role
+  | Sprint
+  | SprintDay
+  | Sticky
+  | TimeZone
+  | UserProfile
 
 input FileInfoInput {
   name: String
@@ -1036,41 +1317,6 @@ input PaginationArg {
 }
 
 type Query {
-  module(id: ID): ModuleEntityResponse
-  modules(
-    filters: ModuleFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): ModuleEntityResponseCollection
-  sprint(id: ID): SprintEntityResponse
-  sprints(
-    filters: SprintFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SprintEntityResponseCollection
-  sprintDay(id: ID): SprintDayEntityResponse
-  sprintDays(
-    filters: SprintDayFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): SprintDayEntityResponseCollection
-  sticky(id: ID): StickyEntityResponse
-  stickies(
-    filters: StickyFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): StickyEntityResponseCollection
-  userProfile(id: ID): UserProfileEntityResponse
-  userProfiles(
-    filters: UserProfileFiltersInput
-    pagination: PaginationArg = {}
-    sort: [String] = []
-    publicationState: PublicationState = LIVE
-  ): UserProfileEntityResponseCollection
   uploadFile(id: ID): UploadFileEntityResponse
   uploadFiles(
     filters: UploadFileFiltersInput
@@ -1124,25 +1370,73 @@ type Query {
     pagination: PaginationArg = {}
     sort: [String] = []
   ): EzformsRecipientEntityResponseCollection
+  badge(id: ID): BadgeEntityResponse
+  badges(
+    filters: BadgeFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): BadgeEntityResponseCollection
+  day(id: ID): DayEntityResponse
+  days(
+    filters: DayFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): DayEntityResponseCollection
+  module(id: ID): ModuleEntityResponse
+  modules(
+    filters: ModuleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): ModuleEntityResponseCollection
+  rev1211Role(id: ID): Rev1211RoleEntityResponse
+  rev1211Roles(
+    filters: Rev1211RoleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): Rev1211RoleEntityResponseCollection
+  sprint(id: ID): SprintEntityResponse
+  sprints(
+    filters: SprintFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintEntityResponseCollection
+  sprintDay(id: ID): SprintDayEntityResponse
+  sprintDays(
+    filters: SprintDayFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): SprintDayEntityResponseCollection
+  sticky(id: ID): StickyEntityResponse
+  stickies(
+    filters: StickyFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): StickyEntityResponseCollection
+  timeZone(id: ID): TimeZoneEntityResponse
+  timeZones(
+    filters: TimeZoneFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): TimeZoneEntityResponseCollection
+  userProfile(id: ID): UserProfileEntityResponse
+  userProfiles(
+    filters: UserProfileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+    publicationState: PublicationState = LIVE
+  ): UserProfileEntityResponseCollection
   me: UsersPermissionsMe
 }
 
 type Mutation {
-  createModule(data: ModuleInput!): ModuleEntityResponse
-  updateModule(id: ID!, data: ModuleInput!): ModuleEntityResponse
-  deleteModule(id: ID!): ModuleEntityResponse
-  createSprint(data: SprintInput!): SprintEntityResponse
-  updateSprint(id: ID!, data: SprintInput!): SprintEntityResponse
-  deleteSprint(id: ID!): SprintEntityResponse
-  createSprintDay(data: SprintDayInput!): SprintDayEntityResponse
-  updateSprintDay(id: ID!, data: SprintDayInput!): SprintDayEntityResponse
-  deleteSprintDay(id: ID!): SprintDayEntityResponse
-  createSticky(data: StickyInput!): StickyEntityResponse
-  updateSticky(id: ID!, data: StickyInput!): StickyEntityResponse
-  deleteSticky(id: ID!): StickyEntityResponse
-  createUserProfile(data: UserProfileInput!): UserProfileEntityResponse
-  updateUserProfile(id: ID!, data: UserProfileInput!): UserProfileEntityResponse
-  deleteUserProfile(id: ID!): UserProfileEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
   updateUploadFile(id: ID!, data: UploadFileInput!): UploadFileEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
@@ -1184,6 +1478,33 @@ type Mutation {
     data: EzformsRecipientInput!
   ): EzformsRecipientEntityResponse
   deleteEzformsRecipient(id: ID!): EzformsRecipientEntityResponse
+  createBadge(data: BadgeInput!): BadgeEntityResponse
+  updateBadge(id: ID!, data: BadgeInput!): BadgeEntityResponse
+  deleteBadge(id: ID!): BadgeEntityResponse
+  createDay(data: DayInput!): DayEntityResponse
+  updateDay(id: ID!, data: DayInput!): DayEntityResponse
+  deleteDay(id: ID!): DayEntityResponse
+  createModule(data: ModuleInput!): ModuleEntityResponse
+  updateModule(id: ID!, data: ModuleInput!): ModuleEntityResponse
+  deleteModule(id: ID!): ModuleEntityResponse
+  createRev1211Role(data: Rev1211RoleInput!): Rev1211RoleEntityResponse
+  updateRev1211Role(id: ID!, data: Rev1211RoleInput!): Rev1211RoleEntityResponse
+  deleteRev1211Role(id: ID!): Rev1211RoleEntityResponse
+  createSprint(data: SprintInput!): SprintEntityResponse
+  updateSprint(id: ID!, data: SprintInput!): SprintEntityResponse
+  deleteSprint(id: ID!): SprintEntityResponse
+  createSprintDay(data: SprintDayInput!): SprintDayEntityResponse
+  updateSprintDay(id: ID!, data: SprintDayInput!): SprintDayEntityResponse
+  deleteSprintDay(id: ID!): SprintDayEntityResponse
+  createSticky(data: StickyInput!): StickyEntityResponse
+  updateSticky(id: ID!, data: StickyInput!): StickyEntityResponse
+  deleteSticky(id: ID!): StickyEntityResponse
+  createTimeZone(data: TimeZoneInput!): TimeZoneEntityResponse
+  updateTimeZone(id: ID!, data: TimeZoneInput!): TimeZoneEntityResponse
+  deleteTimeZone(id: ID!): TimeZoneEntityResponse
+  createUserProfile(data: UserProfileInput!): UserProfileEntityResponse
+  updateUserProfile(id: ID!, data: UserProfileInput!): UserProfileEntityResponse
+  deleteUserProfile(id: ID!): UserProfileEntityResponse
   upload(
     refId: ID
     ref: String

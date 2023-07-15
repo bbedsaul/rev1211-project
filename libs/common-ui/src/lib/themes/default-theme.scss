@@ -1,9 +1,0 @@
-$rev1211-primary: mat-palette($mat-indigo, 800, 300, 900);
-$rev1211-accent: mat-palette($mat-light-blue);
-$rev1211-warn: mat-palette($mat-pink, 600);
-
-$rev1211-theme: mat-light-theme(
-  $rev1211-primary,
-  $rev1211-accent,
-  $rev1211-warn
-);

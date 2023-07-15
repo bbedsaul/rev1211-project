@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import {
-  AuthGuardService as AuthGuard
-} from '@rev1211/data-access';
+import { AuthGuardService as AuthGuard } from './services/auth-guard.service';
+import {SprintListComponent} from "./pages/sprint-list/sprint-list.component";
+import {ModuleDetailComponent} from "./pages/module-detail/module-detail.component";
+import {SprintDetailComponent} from "./pages/sprint-detail/sprint-detail.component";
+import {LoginComponent} from "./pages/login/login.component";
+import { LoginModule } from "./pages/login/login.module";
+import {ProfileComponent} from "./pages/profile/profile.component";
+import {SettingsComponent} from "./pages/settings/settings.component";
 
 const routes: Routes = [
   {
@@ -10,15 +15,51 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
-  /*
   {
     path: 'sprint',
-    loadChildren: () =>
-      import('./sprint/sprint.module').then(
-        (m) => m.SprintModule
-      ),
+    component: SprintListComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'sprint-list',
+    component: SprintListComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'sprint-detail',
+    component: SprintDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'module',
+    component: ModuleDetailComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then(
+        (m) => m.LoginModule
+      ),
+  },
+  {
+    path: 'logout',
+    loadChildren: () =>
+      import('./pages/login/login.module').then(
+        (m) => m.LoginModule
+      ),
+  },
+  /*
   {
     path: 'sprint-admin',
     loadChildren: () =>
@@ -61,17 +102,15 @@ const routes: Routes = [
   },
   */
   {
-    path: 'login',
-    loadChildren: () =>
-      import('@rev1211/common-ui').then(
-        (m) => m.CommonUiModule
-      ),
+    path: 'logout',
+    component: LoginComponent,
+    canActivate: [AuthGuard],
   },
   {
-    path: 'logout',
+    path: 'login',
     loadChildren: () =>
-      import('@rev1211/common-ui').then(
-        (m) => m.CommonUiModule
+      import('./app.module').then(
+        (m) => m.AppModule
       ),
   },
 ];

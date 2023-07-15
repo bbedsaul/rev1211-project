@@ -10,3 +10,193 @@ mutation Login($input: UsersPermissionsLoginInput!) {
     }
 }
 
+query UserProfiles($input: UserProfileFiltersInput) {
+  userProfiles(filters:$input) {
+    data {
+      id
+      attributes {
+        email
+        updatedAt
+        createdAt
+        facilitated {
+          data {
+            id
+            attributes {
+              title
+              description
+              start_date
+              end_date
+              module {
+                data {
+                  id
+                  attributes {
+                    title
+                    name
+                    days
+                    module_days {
+                      data {
+                        id
+                        attributes {
+                          name
+                          description
+                          stickies {
+                            data {
+                              id
+                              attributes {
+                                name
+                                url
+                                media {
+                                  data {
+                                    id
+                                    attributes {
+                                      name
+                                      alternativeText
+                                    }
+                                  }
+                                }
+                                type
+                                completed
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        sprints {
+          data {
+            id
+            attributes {
+              title
+              description
+              start_date
+              end_date
+              module {
+                data {
+                  id
+                  attributes {
+                    title
+                    name
+                    days
+                    module_days {
+                      data {
+                        id
+                        attributes {
+                          name
+                          description
+                          stickies {
+                            data {
+                              id
+                              attributes {
+                                name
+                                url
+                                media {
+                                  data {
+                                    id
+                                    attributes {
+                                      name
+                                      alternativeText
+                                    }
+                                  }
+                                }
+                                type
+                                completed
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        sponsors {
+          data {
+            id
+            attributes {
+              title
+              description
+              start_date
+              end_date
+              module {
+                data {
+                  id
+                  attributes {
+                    title
+                    name
+                    days
+                    module_days {
+                      data {
+                        id
+                        attributes {
+                          name
+                          description
+                          stickies {
+                            data {
+                              id
+                              attributes {
+                                name
+                                url
+                                media {
+                                  data {
+                                    id
+                                    attributes {
+                                      name
+                                      alternativeText
+                                    }
+                                  }
+                                }
+                                type
+                                completed
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        users_permissions_user {
+          data {
+            id
+            attributes {
+              email
+              provider
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+mutation CreateModule($input: ModuleInput!) {
+  createModule(data:$input) {
+    data {
+      id
+      attributes {
+        description
+        days
+        title
+        name
+        createdAt
+        updatedAt
+        publishedAt
+      }
+    }
+  }
+}
+
